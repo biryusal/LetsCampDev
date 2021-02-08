@@ -1,0 +1,35 @@
+.modul {
+  &__header {
+    font-size: 24px;
+  }
+  &__button {
+    width: 120px;
+    height: 40px;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 30px;
+    float: right;
+    margin-right: 5%;
+    &_close {
+      border:1px solid rgba(180, 8, 60, 0.281);
+    }
+  }
+  &__option {
+    margin-bottom: 10px;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 2.5%;
+  }
+  &__filter {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__input {
+    &_checkbox {
+      margin-left: 20px;
+      transform: scale(1.75);
+    }
+  }
+}

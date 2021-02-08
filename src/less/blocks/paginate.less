@@ -1,0 +1,39 @@
+.paginate {
+  &__wrapper {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+    padding: 0px;
+    a {
+      cursor: pointer;
+      padding: 15px 20px;
+      margin: 0 5px;
+      border-radius: 100px;
+      border: 1px solid #313131;
+      color: #141414;
+      @media screen and (max-width: 767px) {
+        margin: 0px;
+        padding: 7px 12px;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      margin-bottom: 100px;
+      padding: 0px;
+    }
+  }
+  &__link  {
+    &_active {
+      a {
+        color: #fff;
+        background: #313131;
+      }
+    }
+    &_disabled {
+      a {
+        color: #E5E7E2;
+        border: 1px solid #E5E7E2;
+      }
+    }
+  }
+}
