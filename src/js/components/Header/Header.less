@@ -1,0 +1,136 @@
+.header {
+  &__scrolled {
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  }
+  &--fixed {
+    position: fixed;
+    width: 100%;
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (min-width: 1440px) {
+      height: 85px;
+    }
+  
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      height: 80px;
+    }
+  
+    @media screen and (min-width: 320px) and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    
+    &__scrolled {
+      display: none;
+    }
+
+    @media screen and (min-width: 1440px) {
+      width: 280px;
+    }
+  
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      width: 280px;
+    }
+  
+  }
+
+  &__link {
+    color: white;
+    font-size: 16px;
+    &_active {
+      border-bottom: 2px solid #fff;
+      padding-bottom: 5px;
+    }
+  }
+
+  &__auth {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: white;
+    border-radius: 30px;
+    img {
+      padding: 0 3px;
+      height: 40px;
+      width: auto;
+      &:first-of-type {
+        height: 15px;
+      }
+      &:last-of-type {
+        height: 30px;
+      }
+    }
+    &_gray {
+      border: 1px solid gray;
+    }
+  }
+
+  &__input {
+    background-image: url("../../../img/magnify.png");
+    cursor: pointer;
+    border: 1px solid rgba(172, 172, 172, 0.705);
+    padding: 0 20px;
+    transition: box-shadow .3s;
+    background-repeat: no-repeat;
+    @media screen and (min-width: 1440px) {
+      width: 360px;
+      height: 50px;
+      border-radius: 30px;
+      font-size: 18px;
+      background-size: 7%;
+      background-position: 95% 50%;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      width: 280px;
+      height: 40px;
+      border-radius: 20px;
+      font-size: 16px;
+      background-size: 5%;
+      background-position: 97% 50%;
+    }
+    @media screen and (max-width: 767px) {
+      width: 75%;
+      height: 40px;
+      border-radius: 20px;
+      font-size: 16px;
+      background-size: 5%;
+      background-position: 97% 50%;
+    }
+    &:hover {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+      transition: .3s;
+    }
+  }
+
+  &__logo {
+    @media screen and (min-width: 1440px) {
+      width: 50px;
+    }
+  
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      width: 40px;
+    }
+  } 
+}
+
