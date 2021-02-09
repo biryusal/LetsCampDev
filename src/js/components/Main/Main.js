@@ -3,6 +3,7 @@ import "./Main.scss";
 import Header from "../Header/Header";
 import Router from "./Router";
 import TourButton from "./TourButton";
+import NearCities from "./NearCities/NearCities";
 
 export default () => {
   const [isHeaderScrolled, setHeaderScrolled] = useState(false);
@@ -25,6 +26,9 @@ export default () => {
             <Router />
             <TourButton />
           </div>
+        </div>
+        <div className = "container">
+          <NearCities />
         </div>
       </main>
     </>
