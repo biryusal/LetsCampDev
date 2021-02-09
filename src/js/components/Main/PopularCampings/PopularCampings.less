@@ -1,0 +1,46 @@
+.popularCampings {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    overflow-x: auto;
+    margin-bottom: 50px;
+    height: 350px;
+    @media screen and (max-width: 767px) {
+      height: 200px;
+    }
+  }
+  &__header {
+    font-family: "Golos Medium";
+    @media screen and (min-width: 1440px) {
+      font-size: 28px;
+    }
+  }
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 250px;
+    width: 23%;
+    margin: 0 10px;
+  }
+  &__imgWrapper {
+    img {
+      border-radius: 15px;
+      object-fit: none;
+      height: 100%;
+      width: 100%;
+    }
+    @media screen and (min-width: 1440px) {
+      width: 100%;
+      height: 250px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      width: 100%;
+      height: 250px;
+    }
+  }
+  &__name {
+    font-size: 20px;
+  }
+}
