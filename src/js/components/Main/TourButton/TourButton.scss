@@ -1,0 +1,65 @@
+.tourButton {
+  &__wrapper {
+    position: absolute;
+    top: 40%;
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      top: 30%;
+    }
+    @media screen and (max-width: 767px) {
+      top: 20%;
+    }
+  }
+  &__header {
+    color: white;
+    margin: 0px;
+    @media screen and (min-width: 1440px) {
+      font-size: 60px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      font-size: 44px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 35px;
+    }
+  }
+  &__subheader {
+    color: white;
+    @media screen and (min-width: 1440px) {
+      font-size: 30px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      font-size: 22px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 20px;
+    }
+  }
+  &__button {
+    font-family: "Golos Medium";
+    cursor: pointer;
+    background-color: white;
+    transition: .2s;
+    &:hover {
+      background-color: rgba(230, 221, 221, 0.87);
+      transition: .2s;
+    }
+    @media screen and (min-width: 1440px) {
+      width: 200px;
+      height: 30px;
+      border-radius: 7px;
+      font-size: 18px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      width: 150px;
+      height: 30px;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+    @media screen and (max-width: 767px) {
+      width: 150px;
+      height: 30px;
+      border-radius: 7px;
+      font-size: 14px;
+    }
+  }
+}

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./Main.scss";
 import Header from "../Header/Header";
 import Router from "./Router";
+import TourButton from "./TourButton";
 
 export default () => {
   const [isHeaderScrolled, setHeaderScrolled] = useState(false);
@@ -22,6 +23,7 @@ export default () => {
         <div className = {isHeaderScrolled ? "main__imgBackground main__imgBackground_scrolled" : "main__imgBackground"}>
           <div className = "container">
             <Router />
+            <TourButton />
           </div>
         </div>
       </main>
