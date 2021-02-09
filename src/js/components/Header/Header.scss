@@ -3,6 +3,7 @@
     background-color: white;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
   }
+
   &--fixed {
     position: fixed;
     width: 100%;
@@ -57,7 +58,7 @@
   &__link {
     color: white;
     font-size: 16px;
-    &_active {
+    &--active {
       border-bottom: 2px solid #fff;
       padding-bottom: 5px;
     }
@@ -81,7 +82,7 @@
         height: 30px;
       }
     }
-    &_gray {
+    &--gray {
       border: 1px solid gray;
     }
   }
