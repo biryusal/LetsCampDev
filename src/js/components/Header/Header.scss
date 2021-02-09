@@ -2,6 +2,8 @@
 
   background-color: transparent;
 
+  z-index: 9999;
+
   @media screen and (min-width: 1440px) {
     height: 80px;
   }
@@ -14,12 +16,12 @@
     height: 60px;
   }
 
-  &--scrolled {
+  &_scrolled {
     background-color: white;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
   }
 
-  &--fixed {
+  &_fixed {
     position: fixed;
     width: 100%;
   }
@@ -73,7 +75,7 @@
   &__link {
     color: white;
     font-size: 16px;
-    &--active {
+    &_active {
       border-bottom: 2px solid #fff;
       padding-bottom: 5px;
     }
@@ -97,7 +99,7 @@
         height: 30px;
       }
     }
-    &--gray {
+    &_gray {
       border: 1px solid gray;
     }
   }

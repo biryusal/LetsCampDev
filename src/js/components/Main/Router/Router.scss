@@ -1,0 +1,72 @@
+.router {
+  &__wrapper {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 50px;
+    background-image: url("../../../../img/magnify.png");
+    background-repeat: no-repeat;
+    @media screen and (min-width: 1440px) {
+      width: 810px;
+      height: 70px;
+      background-size: 5%;
+      background-position: 97% 50%;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      width: 700px;
+      height: 60px;
+      background-size: 4%;
+      background-position: 98% 50%;
+    }
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-left: 1px solid rgb(192, 192, 192);
+    padding-left: 22px;
+    @media screen and (min-width: 1440px) {
+      
+    }
+  }
+  &__header {
+    font-family: "Golos Medium";
+    font-size: 14px;
+  }
+  &__text {
+    font-size: 14px;
+  }
+  &__option {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    border-collapse: collapse;
+    transition: .1s;
+    &:first-of-type {
+      .router__info {
+        border: 0px;
+      }
+    }
+    &:last-of-type {
+      padding-right: 40px;
+    }
+    &:hover {
+      border-radius: 50px;
+      background-color: rgba(0, 0, 0, 0.25);
+      transition: .1s;
+      .router__info {
+        border: 0px;
+      }
+      + div {
+        .router__info {
+          border: 0px;
+        }
+      }
+    }
+  }
+}

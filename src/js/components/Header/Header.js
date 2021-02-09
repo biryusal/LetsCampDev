@@ -17,15 +17,15 @@ export default (props) => {
   }
 
   return(
-    <header className = {isScrolled ? "header header--scrolled header--fixed" : "header"}>
+    <header className = {isScrolled ? "header header_scrolled header_fixed" : "header"}>
       <div className = "container header__wrapper">
         <img className = "header__logo" src = {isScrolled ? BlackLogo : WhiteLogo} alt = "Логотип LetsCamp"></img>
           {isScrolled ? <input type = "text" className = "header__input" placeholder = "Куда едем?"></input> : <div className = "header__links">
-            <NavLink className = "header__link" activeClassName = "header__link--active" exact to = "/">Главная</NavLink>
-            <NavLink className = "header__link" activeClassName = "header__link--active" exact to = "/campings/page/1">Кемпинги</NavLink>
-            <NavLink className = "header__link" activeClassName = "header__link--active" exact to = "/reviews">Отзывы</NavLink>
+            <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/">Главная</NavLink>
+            <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
+            <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/reviews">Отзывы</NavLink>
           </div>}
-          <button onClick = {sideModulHandler} className = {isScrolled ? "header__auth header__auth--gray" : "header__auth"}>
+          <button onClick = {sideModulHandler} className = {isScrolled ? "header__auth header__auth_gray" : "header__auth"}>
             <img className = "header__auth__image" src = {BurgerMenu} alt = "Логотип LetsCamp"></img>
             <img className = "header__auth__image" src = {User} alt = "Логотип LetsCamp"></img>
           </button>

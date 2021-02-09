@@ -1,39 +1,41 @@
 .main {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../img/MainHeaderBackground.jpg") no-repeat;
-  @media screen and (min-width: 1440px) {
-    height: 80vh;
-    background-position: 0% 50%;
-    margin-bottom: 50px;  
-    margin-top: -80px;
-    padding-top: 80px;
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    margin-top: -70px;
-    padding-top: 70px;
-    
-  }
-
-  @media screen and (max-width: 767px) {
-    margin-top: -60px;
-    padding-top: 60px;
-  }
-
-  &--scrolled {
-    margin-top: 0px;
-  }  
+  &__imgBackground {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../../img/MainHeaderBackground.jpg") no-repeat;
+    @media screen and (min-width: 1440px) {
+      height: 80vh;
+      background-position: 0% 50%;
+      margin-bottom: 50px;  
+      margin-top: -80px;
+      padding-top: 80px;
+    }
   
-  @media screen and (min-width: 768px) and (max-width: 1439px) {
-    height: 70vh;
-    background-position: 0% 25%;
-  }
-  @media screen and (min-width: 320px) and (max-width: 767px) {
-    height: 60vh;
-    background-position: 0%;
-  }
-  width: 100%;
-  background-size: cover;
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      margin-top: -70px;
+      padding-top: 70px;
   
+    }
+  
+    @media screen and (max-width: 767px) {
+      margin-top: -60px;
+      padding-top: 60px;
+    }
+  
+    &_scrolled {
+      margin-top: 0px;
+    }  
+  
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      height: 70vh;
+      background-position: 0% 25%;
+    }
+    @media screen and (min-width: 320px) and (max-width: 767px) {
+      height: 60vh;
+      background-position: 0%;
+    }
+    width: 100%;
+    background-size: cover;
+  }
+
   &__check {
     height: 2000px;
     background: url("../../../img/main-background.png") no-repeat;
@@ -51,8 +53,4 @@
       height: 60px;
     }
   }
-}
-
-.kek {
-  height: 3000px;
 }
