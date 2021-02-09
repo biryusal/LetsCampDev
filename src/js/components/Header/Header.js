@@ -17,7 +17,7 @@ export default (props) => {
   }
 
   return(
-    <header className = {isScrolled ? "header header__scrolled header--fixed" : "header"}>
+    <header className = {isScrolled ? "header header--scrolled header--fixed" : "header"}>
       <div className = "container header__wrapper">
         <img className = "header__logo" src = {isScrolled ? BlackLogo : WhiteLogo} alt = "Логотип LetsCamp"></img>
           {isScrolled ? <input type = "text" className = "header__input" placeholder = "Куда едем?"></input> : <div className = "header__links">

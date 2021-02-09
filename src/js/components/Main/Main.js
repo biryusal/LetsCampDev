@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Header from "../Header/Header";
-import "./Main.less";
+import "./Main.scss";
 
 export default () => {
   const [isHeaderScrolled, setHeaderScrolled] = useState(false);
@@ -17,6 +17,9 @@ export default () => {
   return(
     <>
       <Header isScrolled = {isHeaderScrolled}/>
+      <main className = {isHeaderScrolled ? "main main--scrolled" : "main"}>
+        
+      </main>
     </>
   )
 }
