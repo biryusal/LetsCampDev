@@ -5,6 +5,7 @@ import Router from "./Router";
 import TourButton from "./TourButton";
 import NearCities from "./NearCities/NearCities";
 import PopularCampings from "./PopularCampings";
+import Footer from "../Footer";
 
 export default () => {
   const [isHeaderScrolled, setHeaderScrolled] = useState(false);
@@ -22,17 +23,18 @@ export default () => {
     <>
       <Header isScrolled = {isHeaderScrolled}/>
       <main className = "main">
-        <div className = {isHeaderScrolled ? "main__imgBackground main__imgBackground_scrolled" : "main__imgBackground"}>
+        <section className = {isHeaderScrolled ? "main__imgBackground main__imgBackground_scrolled" : "main__imgBackground"}>
           <div className = "container">
             <Router />
             <TourButton />
           </div>
-        </div>
-        <div className = "container">
+        </section>
+        <section className = "container">
           <NearCities />
           <PopularCampings />
-        </div>
+        </section>
       </main>
+      <Footer />
     </>
   )
 }
