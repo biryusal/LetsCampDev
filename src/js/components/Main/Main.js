@@ -6,6 +6,7 @@ import TourButton from "./TourButton";
 import NearCities from "./NearCities/NearCities";
 import PopularCampings from "./PopularCampings";
 import Footer from "../Footer";
+import MobileDownBar from "../MobileDownbar/MobileDownBar";
 
 export default () => {
   const [isHeaderScrolled, setHeaderScrolled] = useState(false);
@@ -32,6 +33,7 @@ export default () => {
         <section className = "container">
           <NearCities />
           <PopularCampings />
+          <MobileDownBar />
         </section>
       </main>
       <Footer />
