@@ -1,6 +1,8 @@
 .header {
   flex-shrink: 0;
   background-color: transparent;
+  display: flex;
+  align-items: center;
   z-index: 9999;
 
   @media screen and (min-width: 1440px) {
@@ -30,34 +32,37 @@
     align-items: center;
     justify-content: space-between;
 
-    @media screen and (min-width: 1440px) {
-      height: 85px;
+    &_desktop {
+      @media screen and (min-width: 1440px) {
+        height: 85px;
+      }
+    
+      @media screen and (min-width: 768px) and (max-width: 1439px) {
+        height: 80px;
+      }
+    
+      @media screen and (min-width: 320px) and (max-width: 767px) {
+        display: none;
+      }
     }
-  
-    @media screen and (min-width: 768px) and (max-width: 1439px) {
-      height: 80px;
+    &_desktop {
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
     }
-  
-    @media screen and (min-width: 320px) and (max-width: 767px) {
-      display: none;
+    &_mobile {
+      justify-content: center;
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
     }
-  }
-
-  &__mobile {
-    @media screen and (min-width: 768px) {
-      display: none;
-    }
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   &__links {
     display: flex;
     justify-content: space-between;
-    
-    &__scrolled {
+
+    &_scrolled {
       display: none;
     }
 

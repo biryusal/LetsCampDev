@@ -18,19 +18,23 @@ export default (props) => {
 
   return(
     <header className = {isScrolled ? "header header_scrolled header_fixed" : "header"}>
-      <div className = "container header__wrapper">
+      <div className = "container header__wrapper header__wrapper_desktop">
         <img className = "header__logo" src = {isScrolled ? BlackLogo : WhiteLogo} alt = "Логотип LetsCamp"></img>
-          {isScrolled ? <input type = "text" className = "header__input" placeholder = "Куда едем?"></input> : <div className = "header__links">
-            <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/">Главная</NavLink>
-            <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
-            <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/reviews">Отзывы</NavLink>
-          </div>}
-          <button onClick = {sideModulHandler} className = {isScrolled ? "header__auth header__auth_gray" : "header__auth"}>
-            <img className = "header__auth__image" src = {BurgerMenu} alt = "Логотип LetsCamp"></img>
-            <img className = "header__auth__image" src = {User} alt = "Логотип LetsCamp"></img>
-          </button>
-          <SideModul />
-        </div>
+        {isScrolled ? <input type = "text" className = "header__input" placeholder = "Куда едем?"></input> :
+        <div className = {isScrolled ? "header__links header__links_scrolled" : "header__links"}>
+          <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/">Главная</NavLink>
+          <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
+          <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/reviews">Отзывы</NavLink>
+        </div>}
+        <button onClick = {sideModulHandler} className = {isScrolled ? "header__auth header__auth_gray" : "header__auth"}>
+          <img className = "header__auth__image" src = {BurgerMenu} alt = "Логотип LetsCamp"></img>
+          <img className = "header__auth__image" src = {User} alt = "Логотип LetsCamp"></img>
+        </button>
+        <SideModul />
+      </div>
+      <div className = "container header__wrapper header__wrapper_mobile">
+        <input type = "text" className = "header__input" placeholder = "Куда едем?"></input>
+      </div>
     </header>
   )
 }
