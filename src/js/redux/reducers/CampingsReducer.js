@@ -1,4 +1,4 @@
-import { GET_CAMPINGS_REQUEST } from "../types/types";
+import { GET_CAMPINGS_FAILURE, GET_CAMPINGS_REQUEST, GET_CAMPINGS_SUCCESS } from "../types/types";
 
 const initialState = {
   isFetching: null,
@@ -6,7 +6,7 @@ const initialState = {
   isUserInitializing: null,
   campings: [],
   currentCamping: null,
-  error: null,
+  campingsError: null,
   filterSettings: {
     WiFi: false,
     animals: false,
@@ -25,5 +25,9 @@ export default function CampingsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CAMPINGS_REQUEST:
       return {...state, isFetching: true}
+    case GET_CAMPINGS_SUCCESS:
+      return {...state, isFetching: false, campings: action.payload}
+    case GET_CAMPINGS_FAILURE:
+      return {...state, isFetching: false, campingsError: action.payload}
   }
 }
