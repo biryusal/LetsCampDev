@@ -8,13 +8,21 @@ import Header from "../Header";
 import "./Campings.scss";
 import Footer from "../Footer";
 import MobileDownbar from "../MobileDownbar/MobileDownBar";
+import { getCampings } from "../../redux/actions/CampingsActions";
+import { getCampingsByPageId } from "../../functions";
 
-export default function Campings(props) {
+function Campings(props) {
+
+  useEffect(() => {
+    getCampings(3)
+  }, []);
+
+  console.log(props);
 
   return (
     <>
       <Header isScrolled = {true}></Header>
-      <main class = "container campings">
+      <main className = "container campings">
         <section className = "campings__wrapper">
           <h1 className = "campings__header">Кемпинги</h1>
           <div className = "campings__filters">
@@ -45,3 +53,14 @@ export default function Campings(props) {
     </>
   )
 }
+const MapStateToProps = state => {
+  return {
+    state
+  }
+}
+
+const MapDispatchToProps = dispatch => ({
+  getCampings: (pageID) => dispatch(getCampings(pageID))
+});
+
+export default connect(MapStateToProps, MapDispatchToProps)(Campings);
