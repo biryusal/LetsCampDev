@@ -22,19 +22,10 @@ export function generateKey(len, charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij
   return randomString;
 }
 
-export async function getCampingsByPageId(pageID, pageSize = 20) {
-  let items = [];
-  
-  let getItems = new Promise((resolve, reject) => {
-    for (let i = ((pageID - 1) * pageSize + (pageID - 1)); i < (pageID * pageSize + (pageID)); i++) {
-      database.ref("currentRequests/" + i).on("value", function(snapshot) {
-        items.push(snapshot.val());
-      })
-    }
-    resolve(items);
+export function getAsyncData(id) {
+  return new Promise((resolve) => {
+    database.ref("currentRequests/" + id).on("value", (snapshot) => {
+      resolve(snapshot.val());
+    });
   })
-
-  let result = await getItems;
-
-  return result;
 }
