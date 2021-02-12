@@ -29,5 +29,7 @@ export default function CampingsReducer(state = initialState, action) {
       return {...state, isFetching: false, campings: action.payload}
     case GET_CAMPINGS_FAILURE:
       return {...state, isFetching: false, campingsError: action.payload}
+    default:
+      return state;
   }
 }
