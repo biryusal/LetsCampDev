@@ -1,5 +1,5 @@
 import { database } from "../../firebase";
-import { getCampingsByPageId } from "../../functions";
+import { getAsyncData } from "../../functions";
 import { GET_CAMPINGS_FAILURE, GET_CAMPINGS_REQUEST, GET_CAMPINGS_SUCCESS } from "../types/types"
 
 export function getCampings(pageID) {
@@ -17,10 +17,6 @@ export function getCampings(pageID) {
 
     catch(error) {
       errorMessage = error.message;
-      dispatch({
-        type: GET_CAMPINGS_FAILURE,
-        payload: error.message
-      })
     }
 
     if (errorMessage === null) {
@@ -29,5 +25,23 @@ export function getCampings(pageID) {
         payload: campingsList
       })
     }
+
+    else {
+      dispatch({
+        type: GET_CAMPINGS_FAILURE,
+        payload: errorMessage
+      })
+    }
   }
+}
+
+async function getCampingsByPageId(pageID, pageSize = 20) {    
+  const promises = [];
+
+  for (let i = (pageID-1)*20 + (pageID-1); i < (pageID*20 + (pageID-1)); i++) {
+    promises.push(getAsyncData(i))
+  }
+
+  return Promise.all(promises)
+    .then((results) => results)
 }
