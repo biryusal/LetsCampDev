@@ -1,18 +1,18 @@
 import { database } from "../../firebase";
-import { getAsyncData } from "../../functions";
-import { GET_CAMPINGS_FAILURE, GET_CAMPINGS_REQUEST, GET_CAMPINGS_SUCCESS } from "../types/types"
+import { asyncGetCampingById, getCampingsByPageIdAndSize } from "../../functions";
+import { GET_CAMPINGS_BY_PAGEID_FAILURE, GET_CAMPINGS_BY_PAGEID_REQUEST, GET_CAMPINGS_BY_PAGEID_SUCCESS, GET_CAMPING_BY_ID_FAILURE } from "../types/types"
 
-export function getCampings(pageID) {
+export function getCampingsByPageId(pageID) {
   return async function(dispatch) {
     dispatch({
-      type: GET_CAMPINGS_REQUEST
+      type: GET_CAMPINGS_BY_PAGEID_REQUEST
     })
     
     let campingsList = null,
         errorMessage = null;
     
     try {
-      campingsList = await getCampingsByPageId(pageID);
+      campingsList = await getCampingsByPageIdAndSize(pageID);
     }
 
     catch(error) {
@@ -21,27 +21,49 @@ export function getCampings(pageID) {
 
     if (errorMessage === null) {
       dispatch({
-        type: GET_CAMPINGS_SUCCESS,
+        type: GET_CAMPINGS_BY_PAGEID_SUCCESS,
         payload: campingsList
       })
     }
 
     else {
       dispatch({
-        type: GET_CAMPINGS_FAILURE,
+        type: GET_CAMPINGS_BY_PAGEID_FAILURE,
         payload: errorMessage
       })
     }
   }
 }
 
-async function getCampingsByPageId(pageID, pageSize = 20) {    
-  const promises = [];
+export function getCampingById(id) {
+  return async function(dispatch) {
+    let payload,
+        error = null;
 
-  for (let i = (pageID-1)*20 + (pageID-1); i < (pageID*20 + (pageID-1)); i++) {
-    promises.push(getAsyncData(i))
+    dispatch({
+      type: GET_CAMPINGS_BY_PAGEID_REQUEST
+    })
+    
+    try {
+      payload = asyncGetCampingById(id);
+    }
+
+    catch(e) {
+      errorMessage = e.message;
+    }
+
+    if (errorMessage === null) {
+      dispatch({
+        type: GET_CAMPING_BY_ID_SUCCESS,
+        payload
+      })
+    }
+
+    else {
+      dispatch({
+        type: GET_CAMPING_BY_ID_FAILURE,
+        payload: errorMessage
+      })
+    }
   }
-
-  return Promise.all(promises)
-    .then((results) => results)
 }

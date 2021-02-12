@@ -3,18 +3,14 @@ import Header from "../../Header";
 import CampingPlugImage from "../../../../img/bigAdvantage.png";
 import Star from "../../../../img/star.svg";
 import "./CampingFull.less";
+import Footer from "../../Footer";
 
 export default (props) => {
   let {number, name, rate} = props;
-  console.log(props);
   return (
     <>
-      <div className = "campings__colorWrapper">
-        <div class = "container">
-          <Header isScrolled = {true}></Header>
-        </div>
-      </div>
-      <div className = "campingFull__wrapper container">
+      <Header isScrolled = {true}></Header>
+      <main className = "campingFull__wrapper container">
         <h1 className = "campingFull__name">{name}</h1>
         <div className = "campingFull__rating">
           <div className = "campingFull__stars">
@@ -31,7 +27,8 @@ export default (props) => {
         <div className = "campingFull__info">
           <span className = "campingFull__text">Здесь описание кемпинга</span>
         </div>
-      </div>
+      </main>
+      <Footer></Footer>
     </>
   )
 }

@@ -44,6 +44,7 @@
   }
   &__reviews {
     border-bottom: 1px dashed rgb(214, 212, 212);
+    color: rgb(107, 107, 107);
   }
   &__star svg {
     width: 20px;
@@ -68,9 +69,18 @@
     height: 100%;
   }
   &__name {
+    color: black;
     margin: 0px;
-    font-size: 24px;
     margin-bottom: 10px;
+    @media screen and (min-width: 1440px) {
+      font-size: 20px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      font-size: 16px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+    }
   }
   &__price {
     font-family: "Golos Medium";

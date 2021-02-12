@@ -22,10 +22,21 @@ export function generateKey(len, charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij
   return randomString;
 }
 
-export function getAsyncData(id) {
+export function asyncGetCampingById(id) {
   return new Promise((resolve) => {
     database.ref("currentRequests/" + id).on("value", (snapshot) => {
       resolve(snapshot.val());
     });
   })
+}
+
+export async function getCampingsByPageIdAndSize(pageID, pageSize = 20) {    
+  const promises = [];
+
+  for (let i = (pageID-1)*20 + (pageID-1); i < (pageID*20 + (pageID-1)); i++) {
+    promises.push(getAsyncData(i))
+  }
+
+  return Promise.all(promises)
+    .then((results) => results)
 }

@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import CampingPlugImage from "../../../../img/bigAdvantage.png";
 import Star from "../../../../img/star.svg";
-import "./CampingCard.less";
+import "./CampingCard.scss";
 
 export default (props) => {
   let {name, rate, pricePerDay, number} = props;
