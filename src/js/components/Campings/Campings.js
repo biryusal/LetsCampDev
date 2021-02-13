@@ -9,22 +9,27 @@ import "./Campings.scss";
 import Footer from "../Footer";
 import MobileDownbar from "../MobileDownbar/MobileDownBar";
 import CampingsList from "./CampingsList";
-import { getCampingsByPageId } from "../../redux/actions/CampingsActions";
+import { getAmountOfCampings, getCampingsByPageId } from "../../redux/actions/CampingsActions";
 import { getCampingPageId } from "../../functions";
 
 function Campings(props) {
-  const {getCampingsByPageId} = props;
-
+  const {getCampingsByPageId, getAmountOfCampings, amountOfCampings, campings} = props;
   const location = useLocation();
-
-  const currentID = Number(location.pathname.match(/campings\/page\/(\d+)/)[1]);
-
+  const [pageNumber, setPageNumber] = useState(Number(location.pathname.match(/campings\/page\/(\d+)/)[1]));
+  
   useEffect(() => {
-    getCampingsByPageId(currentID);
+    getAmountOfCampings();
+    getCampingsByPageId(pageNumber);
   }, []);
+
+  function changePageHandler(page) {
+    setPageNumber(page.selected+1);
+    getCampingsByPageId(page.selected+1);
+  }
   
   return (
     <>
+      <Redirect to = {"/campings/page/" + pageNumber}></Redirect>
       <Header isScrolled = {true}></Header>
       <main className = "container campings">
         <section className = "campings__wrapper">
@@ -36,19 +41,21 @@ function Campings(props) {
             <button className = "campings__filter">Дополнительно</button>
             <button className = "campings__filter">Фильтры (6)</button>
           </div>
-          <h2 className = "campings__subheader">Все кемпинги (всего: plugged)</h2>
+          <h2 className = "campings__subheader">Все кемпинги (всего: {amountOfCampings})</h2>
           <div className = "campings__list">
-            <CampingsList campings = {props.campings} />
+            <CampingsList campings = {campings} />
           </div>
           <ReactPaginate 
-            previousLabel = "Пред."
-            nextLabel = "След."
-            pageCount = {5} pageRangeDisplayed = {2} marginPagesDisplayed = {1}
-            containerClassName = "paginate__wrapper"
-            previousClassName = "paginate__link"
-            nextClassName = "paginate__link"
-            disabledClassName = "paginate__link_disabled"
-            activeClassName = "paginate__link_active"
+              previousLabel = "Пред."
+              nextLabel = "След."
+              pageCount = {Math.ceil(amountOfCampings / 20)} pageRangeDisplayed = {3} marginPagesDisplayed = {1}
+              containerClassName = "paginate__wrapper"
+              previousClassName = "paginate__link"
+              nextClassName = "paginate__link"
+              forcePage = {pageNumber - 1}
+              disabledClassName = "paginate__link_disabled"
+              activeClassName = "paginate__link_active"
+              onPageChange = {changePageHandler}
             />
         </section>
         <MobileDownbar />
@@ -60,13 +67,15 @@ function Campings(props) {
 
 const MapStateToProps = (state) => {
   return {
-    campings: state.campings
+    campings: state.campings,
+    amountOfCampings: state.amountOfCampings
   }
 }
 
 const MapDispatchToProps = (dispatch) => {
   return {
-    getCampingsByPageId: (pageID) => dispatch(getCampingsByPageId(pageID))
+    getCampingsByPageId: (pageID) => dispatch(getCampingsByPageId(pageID)),
+    getAmountOfCampings: () => dispatch(getAmountOfCampings())
   }
 };
 
