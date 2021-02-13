@@ -21,6 +21,26 @@
   &__rating {
     margin-bottom: 10px;
   }
+  &__brief {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  &__imgWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    img {
+      width: 30%;
+      object-fit: cover;
+    }
+  }
+  &__possibilities {
+    border: 1px solid rgb(214, 212, 212);
+    border-radius: 15px;
+    @media screen and (min-width: 1440px) {
+      width: 400px;
+    }
+  }
   &__stars svg {
     width: 20px;
     height: 20px;
