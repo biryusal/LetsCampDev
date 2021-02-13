@@ -3,22 +3,26 @@ import {connect} from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import PropTypes from "prop-types";
 import ReactPaginate from 'react-paginate';
-import {Redirect, useLocation} from "react-router-dom";
+import {Redirect, useLocation } from "react-router-dom";
 import Header from "../Header";
 import "./Campings.scss";
 import Footer from "../Footer";
 import MobileDownbar from "../MobileDownbar/MobileDownBar";
-import { getCampings } from "../../redux/actions/CampingsActions";
-import { getCampingsByPageId } from "../../functions";
+import CampingsList from "./CampingsList";
+import { getCampingsByPageId } from "../../redux/actions/CampingsActions";
+import { getCampingPageId } from "../../functions";
 
 function Campings(props) {
+  const {getCampingsByPageId} = props;
+
+  const location = useLocation();
+
+  const currentID = Number(location.pathname.match(/campings\/page\/(\d+)/)[1]);
 
   useEffect(() => {
-    getCampings(3)
+    getCampingsByPageId(currentID);
   }, []);
-
-  console.log(props);
-
+  
   return (
     <>
       <Header isScrolled = {true}></Header>
@@ -34,7 +38,7 @@ function Campings(props) {
           </div>
           <h2 className = "campings__subheader">Все кемпинги (всего: plugged)</h2>
           <div className = "campings__list">
-            
+            <CampingsList campings = {props.campings} />
           </div>
           <ReactPaginate 
             previousLabel = "Пред."
@@ -53,14 +57,17 @@ function Campings(props) {
     </>
   )
 }
-const MapStateToProps = state => {
+
+const MapStateToProps = (state) => {
   return {
-    state
+    campings: state.campings
   }
 }
 
-const MapDispatchToProps = dispatch => ({
-  getCampings: (pageID) => dispatch(getCampings(pageID))
-});
+const MapDispatchToProps = (dispatch) => {
+  return {
+    getCampingsByPageId: (pageID) => dispatch(getCampingsByPageId(pageID))
+  }
+};
 
 export default connect(MapStateToProps, MapDispatchToProps)(Campings);
