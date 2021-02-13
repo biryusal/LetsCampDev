@@ -1,6 +1,5 @@
-import { database } from "../../firebase";
 import { asyncGetCampingById, getCampingsByPageIdAndSize } from "../../functions";
-import { GET_CAMPINGS_BY_PAGEID_FAILURE, GET_CAMPINGS_BY_PAGEID_REQUEST, GET_CAMPINGS_BY_PAGEID_SUCCESS, GET_CAMPING_BY_ID_FAILURE } from "../types/types"
+import { GET_CAMPINGS_BY_PAGEID_FAILURE, GET_CAMPINGS_BY_PAGEID_REQUEST, GET_CAMPINGS_BY_PAGEID_SUCCESS, GET_CAMPING_BY_ID_FAILURE, GET_CAMPING_BY_ID_REQUEST, GET_CAMPING_BY_ID_SUCCESS } from "../types/types"
 
 export function getCampingsByPageId(pageID) {
   return async function(dispatch) {
@@ -37,15 +36,15 @@ export function getCampingsByPageId(pageID) {
 
 export function getCampingById(id) {
   return async function(dispatch) {
-    let payload,
-        error = null;
+    let result,
+        errorMessage = null;
 
     dispatch({
-      type: GET_CAMPINGS_BY_PAGEID_REQUEST
+      type: GET_CAMPING_BY_ID_REQUEST
     })
     
     try {
-      payload = asyncGetCampingById(id);
+      result = await asyncGetCampingById(id);
     }
 
     catch(e) {
@@ -55,7 +54,7 @@ export function getCampingById(id) {
     if (errorMessage === null) {
       dispatch({
         type: GET_CAMPING_BY_ID_SUCCESS,
-        payload
+        payload: result
       })
     }
 
