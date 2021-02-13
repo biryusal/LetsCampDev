@@ -3,13 +3,21 @@ import { useLocation } from "react-router-dom";
 import {connect} from "react-redux";
 import "./CampingPage.less";
 import CampingFull from "../CampingFull";
+import { getCampingById } from "../../../redux/actions/CampingsActions";
 
 function CampingPage(props) {
-  let {currentCamping} = props;
+
+  const {getCampingById} = props;
 
   const location = useLocation();
 
   const currentID = Number(location.pathname.match(/campings\/id\/(\d+)/)[1]);
+
+  useEffect(() => {
+    getCampingById(currentID);
+  }, []);  
+
+  let {currentCamping} = props;
 
   return (
     <CampingFull {...currentCamping}></CampingFull>
@@ -23,9 +31,9 @@ const MapStateToProps = state => {
   }
 }
 
-const MapDispatchToProps = state => {
+const MapDispatchToProps = dispatch => {
   return {
-    getSoloCampings: () => dispatch(getSoloCamping())
+    getCampingById: (id) => dispatch(getCampingById(id))
   }
 }
 
