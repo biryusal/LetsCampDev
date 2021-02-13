@@ -23,10 +23,15 @@ export function generateKey(len, charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij
 }
 
 export function asyncGetCampingById(id) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     database.ref("currentRequests/" + id).on("value", (snapshot) => {
-      resolve(snapshot.val());
-    });
+      if (snapshot.exists()) {
+        resolve(snapshot.val());
+      }
+      else {
+        reject();
+      }
+    })
   })
 }
 
@@ -37,6 +42,24 @@ export async function getCampingsByPageIdAndSize(pageID, pageSize = 20) {
     promises.push(asyncGetCampingById(i))
   }
 
-  return Promise.all(promises)
-    .then((results) => results)
+  return Promise.allSettled(promises)
+    .then(values => {
+      return values.filter(currentItem => {
+        if (currentItem.status == "fulfilled" && currentItem.value) {
+          return currentItem;
+        }
+      }).map(curr => {
+        if (curr.value) {
+          return curr.value;
+        }
+      })
+    });
+}
+
+export async function asyncGetAmountOfCampings() {
+  return new Promise((resolve) => {
+    database.ref("/amountOfCampings").on("value", (snapshot) => {
+      resolve(snapshot.val());
+    });
+  });
 }
