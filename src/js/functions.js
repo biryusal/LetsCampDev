@@ -34,7 +34,7 @@ export async function getCampingsByPageIdAndSize(pageID, pageSize = 20) {
   const promises = [];
 
   for (let i = (pageID-1)*20 + (pageID-1); i < (pageID*20 + (pageID-1)); i++) {
-    promises.push(getAsyncData(i))
+    promises.push(asyncGetCampingById(i))
   }
 
   return Promise.all(promises)
