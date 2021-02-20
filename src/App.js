@@ -14,7 +14,7 @@ function App() {
       <Switch>
         <Route exact path = "/" render = {() => <Main />}></Route>
         <Route exact path = "/campings/page/:page" render = {() => <Campings />}></Route>
-        <Route path = "/campings/id/:id" render = {() => <CampingPage />}></Route>
+        <Route exact path = "/campings/id/:id" render = {() => <CampingPage />}></Route>
       </Switch>
     </Router>
   )
