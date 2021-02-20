@@ -1,0 +1,72 @@
+.specialFilter {
+  &__wrapper {
+    position: absolute;
+    width: 300px;
+    min-height: 300px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(230, 230, 230)
+  }
+  &__filter {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__name {
+    flex-grow: 1;
+    padding: 10px 0px;
+  }
+  &__checkbox {
+    display: none;
+    & + label {
+      background:url("../../../../../img/emptyCheckbox.png") no-repeat;
+      background-size: 24px 24px;
+      background-position: 100%;
+      display:inline-block;
+      padding: 10px 0px;
+    }
+    &:checked + label {
+      background:url("../../../../../img/checkedCheckbox.png") no-repeat;
+      background-size: 24px 24px;
+      background-position: 100%;
+      display:inline-block;
+      padding: 10px 0px;
+    }
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__button {
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 6px 10px;
+  }
+
+  &__submitButton {
+    color: white;
+    background-color: rgb(39, 39, 39);
+    transition: .4s;
+    &:hover {
+      background-color: black;
+      color: white;
+      transition: .4s;
+    }
+  }
+
+  &__clearButton {
+    color: rgb(0, 0, 0);
+    border-bottom: 2px solid black;
+    border-radius: 0px;
+    font-family: "Golos Medium";
+    transition: .4s;
+    &:hover {
+      background-color: black;
+      color: white;
+      transition: .4s;
+    }
+  }
+}
+
+#specialFilter {
+  display: none;
+} 
