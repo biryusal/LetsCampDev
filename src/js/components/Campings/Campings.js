@@ -9,24 +9,50 @@ import "./Campings.scss";
 import Footer from "../Footer";
 import MobileDownbar from "../MobileDownbar/MobileDownBar";
 import CampingsList from "./CampingsList";
-import { getAmountOfCampings, getCampingsByPageId } from "../../redux/actions/CampingsActions";
-import { getCampingPageId } from "../../functions";
+import { applyFiltersRedirect, getAmountOfCampings, getCampingsByPageId, getFilteredCampingsByPageId, resetFiltersRedirect } from "../../redux/actions/CampingsActions";
+import SpecialFilter from "./Filters/SpecialFilter";
 
 function Campings(props) {
-  const {getCampingsByPageId, getAmountOfCampings, amountOfCampings, campings} = props;
+  const {getCampingsByPageId, getAmountOfCampings, amountOfCampings, campings, resetFiltersRedirect, 
+    filterApplied, getFilteredCampingsByPageId, currentFilteredCampings, isCampingsLoading} = props;
   const location = useLocation();
   const [pageNumber, setPageNumber] = useState(Number(location.pathname.match(/campings\/page\/(\d+)/)[1]));
-  
+  let filterRedirect = props.filterRedirect;
+
   useEffect(() => {
     getAmountOfCampings();
-    getCampingsByPageId(pageNumber);
+    getCampingsByPageId(pageNumber); 
   }, []);
 
   function changePageHandler(page) {
     setPageNumber(page.selected+1);
-    getCampingsByPageId(page.selected+1);
+    if (filterApplied) {
+      console.log(filterApplied);
+      console.log(page.selected+1);
+      getFilteredCampingsByPageId(page.selected+1, campings);
+    }
+    else {
+      getCampingsByPageId(page.selected+1);
+    } 
+  }
+
+  function specialFilterSwitcher() {
+    if (document.getElementById("specialFilter").style.display == "block") {
+      document.getElementById("specialFilter").style.display = "none";
+      document.getElementById("specialFilterButton").classList.remove("specialFilterButton_active");
+    }
+    else {
+      document.getElementById("specialFilter").style.display = "block";
+      document.getElementById("specialFilterButton").classList.add("specialFilterButton_active");
+    }
   }
   
+  if (filterRedirect && pageNumber != 1) {
+    resetFiltersRedirect();
+    setPageNumber(1);
+    return <Redirect exact to = {"/campings/page/" + 1} ></Redirect>
+  }
+
   return (
     <>
       <Redirect to = {"/campings/page/" + pageNumber}></Redirect>
@@ -35,20 +61,18 @@ function Campings(props) {
         <section className = "campings__wrapper">
           <h1 className = "campings__header">Кемпинги</h1>
           <div className = "campings__filters">
-            <button className = "campings__filter">Специальные</button>
-            <button className = "campings__filter">Места</button>
-            <button className = "campings__filter">Цена</button>
-            <button className = "campings__filter">Дополнительно</button>
-            <button className = "campings__filter">Фильтры (6)</button>
+            <button onClick = {specialFilterSwitcher} id = "specialFilterButton" className = "campings__filter">Специальные</button>
+            <SpecialFilter />
+            
           </div>
-          <h2 className = "campings__subheader">Все кемпинги (всего: {amountOfCampings})</h2>
-          <div className = "campings__list">
-            <CampingsList campings = {campings} />
-          </div>
+          <h2 className = "campings__subheader">Все кемпинги (всего: {filterApplied ? campings.length : amountOfCampings})</h2>
+          {isCampingsLoading ? <div className = "campings__fetching"><ClipLoader color = "#AFAFAF"/></div>  : <div className = "campings__list">
+            <CampingsList campings = {filterApplied && currentFilteredCampings ? currentFilteredCampings : campings} />
+          </div>}
           <ReactPaginate 
               previousLabel = "Пред."
               nextLabel = "След."
-              pageCount = {Math.ceil(amountOfCampings / 20)} pageRangeDisplayed = {3} marginPagesDisplayed = {1}
+              pageCount = {filterApplied ? Math.ceil(campings.length / 20) : Math.ceil(amountOfCampings / 20)} pageRangeDisplayed = {3} marginPagesDisplayed = {1}
               containerClassName = "paginate__wrapper"
               previousClassName = "paginate__link"
               nextClassName = "paginate__link"
@@ -58,8 +82,8 @@ function Campings(props) {
               onPageChange = {changePageHandler}
             />
         </section>
-        <MobileDownbar />
       </main>
+      <MobileDownbar />
       <Footer />
     </>
   )
@@ -68,14 +92,20 @@ function Campings(props) {
 const MapStateToProps = (state) => {
   return {
     campings: state.campings,
-    amountOfCampings: state.amountOfCampings
+    amountOfCampings: state.amountOfCampings,
+    filterRedirect: state.filterRedirect,
+    filterApplied: state.filterApplied,
+    currentFilteredCampings: state.currentFilteredCampings,
+    isCampingsLoading: state.isCampingsLoading
   }
 }
 
 const MapDispatchToProps = (dispatch) => {
   return {
     getCampingsByPageId: (pageID) => dispatch(getCampingsByPageId(pageID)),
-    getAmountOfCampings: () => dispatch(getAmountOfCampings())
+    getFilteredCampingsByPageId: (pageID, campings) => dispatch(getFilteredCampingsByPageId(pageID, campings)),
+    getAmountOfCampings: () => dispatch(getAmountOfCampings()),
+    resetFiltersRedirect: () => dispatch(resetFiltersRedirect())
   }
 };
 

@@ -19,10 +19,6 @@
     margin: 0 20px;
     background-color: white;
     border: 1px solid rgb(233, 233, 233);
-    &:active {
-      border: 2px solid rgb(44, 44, 44) !important;
-      background-color:rgb(235, 235, 235);
-    }
     &:hover {
       border: 1px solid rgb(196, 196, 196);
     }
@@ -61,6 +57,21 @@
       justify-content: center;
     }
   }
+  &__fetching {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    @media screen and (min-width: 1440px) {
+      height: 500px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      height: 450px;
+    }
+    @media screen and (max-width: 767px) {
+      height: 400px;
+    }
+  }
   &__colorWrapper {
     z-index: 9999;
     background-color: white;
@@ -72,5 +83,12 @@
     @media screen and (max-width: 767px) {
       height: 60px;
     }
+  }
+}
+
+.specialFilterButton {
+  &_active {
+    border: 2px solid rgb(44, 44, 44) !important;
+    background-color:rgb(235, 235, 235);
   }
 }
