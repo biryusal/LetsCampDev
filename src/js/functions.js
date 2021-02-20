@@ -38,7 +38,7 @@ export function asyncGetCampingById(id) {
 export async function getCampingsByPageIdAndSize(pageID, pageSize = 20) {    
   const promises = [];
 
-  for (let i = (pageID-1)*20 + (pageID-1); i < (pageID*20 + (pageID-1)); i++) {
+  for (let i = (pageID-1)*pageSize + (pageID-1); i < (pageID*pageSize + (pageID-1)); i++) {
     promises.push(asyncGetCampingById(i))
   }
 
@@ -62,4 +62,26 @@ export async function asyncGetAmountOfCampings() {
       resolve(snapshot.val());
     });
   });
+}
+
+export async function getCampingByFilter(name) {
+  let result = await new Promise((resolve, reject) => {
+    database.ref("currentRequests/").orderByChild(name).equalTo("true").on("value", snapshot => {
+      resolve(snapshot.val());
+    })
+  });
+  return result;
+}
+
+export function revokeSpecialFiltersCheckboxes() {
+  document.getElementById("WiFi").checked = false;
+  document.getElementById("food").checked = false;
+  document.getElementById("isWater").checked = false;
+  document.getElementById("animals").checked = false;
+  document.getElementById("nonsmokeZone").checked = false;
+  document.getElementById("electricity").checked = false;
+  document.getElementById("kids").checked = false;
+  document.getElementById("parkSpace").checked = false;
+  document.getElementById("sleepSpace").checked = false;
+  document.getElementById("peopleDisabilities").checked = false;
 }
