@@ -33,9 +33,9 @@ export default () => {
         <section className = "container">
           <NearCities />
           <PopularCampings />
-          <MobileDownBar />
         </section>
       </main>
+      <MobileDownBar />
       <Footer />
     </>
   )
