@@ -19,9 +19,17 @@
     "@babel/preset-react": "^7.12.1",
     "@svgr/webpack": "^5.4.0",
     "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.0",
+    "css-minimizer-webpack-plugin": "^1.2.0",
     "file-loader": "^6.2.0",
     "firebase-admin": "^9.3.0",
+    "html-minimizer-webpack-plugin": "^2.1.0",
+    "image-minimizer-webpack-plugin": "^2.2.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^8.0.0",
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "react-helmet": "^6.1.0",
@@ -53,6 +61,7 @@
     "react-spinners": "^0.10.4",
     "react-star-ratings": "^2.3.0",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   }
 }

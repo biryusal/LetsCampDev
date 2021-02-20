@@ -1,4 +1,10 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 const webpack = require("webpack");
 
@@ -69,6 +75,15 @@ module.exports = {
               publicPath: "/"
             }
           },
+          {
+            loader: ImageMinimizerPlugin.loader,
+            options: {
+              severityError: 'warning',
+              minimizerOptions: {
+                plugins: ['gifsicle'],
+              }
+            }
+          }
         ],
       },
       {
@@ -89,6 +104,20 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        test: /\.js(\?.*)?$/i,
+      }),
+      new CssMinimizerPlugin({
+        test: /\.foo\.css$/i,
+      }),
+      new HtmlMinimizerPlugin({
+        test: /\.foo\.html/i,
+      })
+    ]
+  },
   devServer: {
     port: 80,
     contentBase: './dist',
@@ -103,6 +132,25 @@ module.exports = {
       template: "./src/index.html",
       filename: "./index.html",
       favicon: "./src/favicon.ico"
+    }),
+    new ImageMinimizerPlugin({
+      minimizerOptions: {
+        plugins: [
+          ['gifsicle', { interlaced: true }],
+          ['jpegtran', { progressive: true }],
+          ['optipng', { optimizationLevel: 5 }],
+          [
+            'svgo',
+            {
+              plugins: [
+                {
+                  removeViewBox: false,
+                },
+              ],
+            },
+          ],
+        ],
+      },
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
