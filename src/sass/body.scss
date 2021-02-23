@@ -1,3 +1,7 @@
 body {
   font-family: "Golos Regular", Arial, Helvetica, sans-serif;
 }
+
+*:focus {
+  outline: 0 !important;
+}
