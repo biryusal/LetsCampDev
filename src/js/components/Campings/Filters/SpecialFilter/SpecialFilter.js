@@ -6,7 +6,7 @@ import "./SpecialFilter.scss";
 function SpecialFilter(props) {
   const {changeFilters, applyFilters, campingFilters, revokeSpecialFilters} = props;
   return(
-    <div id = "specialFilter" className = "campingFilter__wrapper specialFilter__wrapper modalWindow">
+    <div id = "specialFilter" className = "campingFilter__wrapper specialFilter__wrapper">
       <div className = "specialFilter__filter">
         <input onChange = {changeFilters} className = "specialFilter__checkbox" type = "checkbox" id = "WiFi" name = "WiFi"></input>
         <label htmlFor = "WiFi" className = "specialFilter__name">Wi-Fi</label>

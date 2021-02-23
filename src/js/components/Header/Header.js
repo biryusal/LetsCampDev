@@ -35,7 +35,7 @@ export default (props) => {
           <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
           <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/reviews">Отзывы</NavLink>
         </div>}
-        <button onClick = {sideModulHandler} id = "header__auth" className = {isScrolled ? "header__auth header__auth_gray modalWindowButton" : "header__auth modalWindowButton"}>
+        <button onClick = {sideModulHandler} id = "header__auth" className = {isScrolled ? "header__auth header__auth_gray" : "header__auth"}>
           <img className = "header__auth__image" src = {BurgerMenu} alt = "Логотип LetsCamp"></img>
           <img className = "header__auth__image" src = {User} alt = "Логотип LetsCamp"></img>
         </button>
