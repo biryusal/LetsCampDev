@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Main from "./js/components/Main";
 import {
-  BrowserRouter as Router, 
+  BrowserRouter, 
   Route, Switch
 } from "react-router-dom";
 import { connect } from "react-redux";
@@ -10,13 +10,13 @@ import CampingPage from "./js/components/Campings/CampingPage/CampingPage";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Switch>
         <Route exact path = "/" render = {() => <Main />}></Route>
         <Route exact path = "/campings/page/:page" render = {() => <Campings />}></Route>
         <Route exact path = "/campings/id/:id" render = {() => <CampingPage />}></Route>
       </Switch>
-    </Router>
+    </BrowserRouter>
   )
 }
 
