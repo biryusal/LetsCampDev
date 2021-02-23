@@ -2,10 +2,10 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import "./SideModul.less";
 
-export default () => {
-  
+export default () => {  
   function closeSideModul() {
     document.getElementById("sideModul").style.display = "none";
+    document.getElementById("header__auth").classList.remove("header__auth_active");
   }
 
   return (
