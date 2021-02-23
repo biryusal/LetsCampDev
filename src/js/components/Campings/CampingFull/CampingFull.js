@@ -4,9 +4,9 @@ import CampingPlugImage from "../../../../img/bigAdvantage.png";
 import Star from "../../../../img/star.svg";
 import "./CampingFull.less";
 import Footer from "../../Footer";
+import MobileDownbar from "../../MobileDownbar/MobileDownBar";
 
 export default (props) => {
-  console.log(props);
   let {number, name, rate} = props;
   return (
     <>
@@ -29,14 +29,15 @@ export default (props) => {
             <img src = {CampingPlugImage} alt = "Фото кемпинга" className = "campingFull__img"></img>
           </div>
           <div className = "campingFull__possibilities">
-            Здесь я красиво оформлю, каким фильтрам соответсвует данный кемпинг.
+            Здесь я красиво оформлю, каким фильтрам соответствует данный кемпинг.
           </div>
         </section>
         <section className = "campingFull__info">
           <span className = "campingFull__text">Здесь описание кемпинга.</span>
         </section>
       </main>
-      <Footer></Footer>
+      <MobileDownbar />
+      <Footer />
     </>
   )
 }
