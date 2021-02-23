@@ -93,6 +93,11 @@
     padding: 5px 10px;
     background-color: white;
     border-radius: 30px;
+    transition: .4s;
+    &_active {
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      transition: .4s;
+    }
     img {
       padding: 0 3px;
       height: 40px;
@@ -106,6 +111,11 @@
     }
     &_gray {
       border: 1px solid gray;
+    }
+
+    &:hover {
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      transition: .4s;
     }
   }
 
