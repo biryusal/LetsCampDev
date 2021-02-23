@@ -11,15 +11,17 @@ export default (props) => {
   let {isScrolled} = props;
 
   function sideModulHandler() {
-    document.getElementById("sideModul").style.display == "block" ?
+    document.getElementById("sideModul").style.display == "inline-block" ?
     document.getElementById("sideModul").style.display = "none" :
-    document.getElementById("sideModul").style.display = "block";
+    document.getElementById("sideModul").style.display = "inline-block";
   }
 
   return(
     <header className = {isScrolled ? "header header_scrolled header_fixed" : "header"}>
       <div className = "container header__wrapper header__wrapper_desktop">
-        <img className = "header__logo" src = {isScrolled ? BlackLogo : WhiteLogo} alt = "Логотип LetsCamp"></img>
+        <NavLink to = "/">
+          <img className = "header__logo" src = {isScrolled ? BlackLogo : WhiteLogo} alt = "Логотип LetsCamp"></img>
+        </NavLink>
         {isScrolled ? <input type = "text" className = "header__input" placeholder = "Куда едем?"></input> :
         <div className = {isScrolled ? "header__links header__links_scrolled" : "header__links"}>
           <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/">Главная</NavLink>
