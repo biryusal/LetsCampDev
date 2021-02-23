@@ -36,6 +36,23 @@ function Campings(props) {
     } 
   }
 
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".modalWindow") && !event.target.classList.contains("modalWindowButton")) {
+      console.log("doesnt count");
+      let modalWindows = document.getElementsByClassName("modalWindow"),
+          modalWindowsButtons = document.getElementsByClassName("modalWindowButton");
+      
+      for (let i = 0; i < modalWindows.length; i++) {
+        modalWindows[i].style["display"] = "none";
+      }
+
+      for (let k = 0; k < modalWindowsButtons.length; k++) {
+        console.log(modalWindowsButtons[k].id + "_active");
+        modalWindowsButtons[k].classList.remove(modalWindowsButtons[k].id + "_active");
+      }
+    }
+  });
+
   function specialFilterSwitcher() {
     if (document.getElementById("specialFilter").style.display == "block") {
       document.getElementById("specialFilter").style.display = "none";
@@ -61,7 +78,7 @@ function Campings(props) {
         <section className = "campings__wrapper">
           <h1 className = "campings__header">Кемпинги</h1>
           <div className = "campings__filters">
-            <button onClick = {specialFilterSwitcher} id = "specialFilterButton" className = "campings__filter">Специальные</button>
+            <button onClick = {specialFilterSwitcher} id = "specialFilterButton" className = "campings__filter modalWindowButton">Специальные</button>
             <SpecialFilter />
             
           </div>

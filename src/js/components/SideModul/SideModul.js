@@ -9,7 +9,7 @@ export default () => {
   }
 
   return (
-    <div id = "sideModul">
+    <div className = "modalWindow" id = "sideModul">
       <div className = "sideModul__header">
         <h2 className = "sideModul__header">Меню</h2>
         <button className = "sideModul__closer" onClick = {closeSideModul}>X</button>
