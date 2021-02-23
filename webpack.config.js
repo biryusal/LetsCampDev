@@ -105,6 +105,7 @@ module.exports = {
     ]
   },
   optimization: {
+    minimize: false,
     minimizer: [
       new UglifyJsPlugin({
         test: /\.js(\?.*)?$/i,
