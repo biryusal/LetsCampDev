@@ -1,0 +1,10 @@
+.modalWindow {
+  &__window {
+    &_visible {
+      display: block;
+    }
+    &_hidden {
+      display: none;
+    }
+  }
+}
