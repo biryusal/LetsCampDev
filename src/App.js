@@ -9,6 +9,55 @@ import Campings from "./js/components/Campings/Campings";
 import CampingPage from "./js/components/Campings/CampingPage/CampingPage";
 
 function App() {
+
+  window.onload = function() {
+    document.addEventListener("click", (event) => {
+      let modalButtons = document.getElementsByClassName("modalWindowButton"),
+          modalWindows = document.getElementsByClassName("modalWindow");
+      if (event.target.classList.contains("modalWindowButton")) {
+        let currentButton = document.getElementById(event.target.id),
+            currentWindow = document.getElementById(event.target.id.slice(0, event.target.id.indexOf("Button")));
+
+        if (currentWindow.style.display == "none" || currentWindow.style.display == "") {
+          for (let i = 0; i < modalWindows.length; i++) {
+            modalWindows[i].style.display = "none";
+          }
+  
+          for (let k = 0; k < modalButtons.length; k++) {
+            modalButtons[k].classList.remove(modalButtons[k].id + "_active");
+          }
+          currentWindow.style.display = "block";
+          currentButton.classList.add(event.target.id + "_active");    
+        }
+
+        else {
+          for (let i = 0; i < modalWindows.length; i++) {
+            modalWindows[i].style.display = "none";
+          }
+  
+          for (let k = 0; k < modalButtons.length; k++) {
+            modalButtons[k].classList.remove(modalButtons[k].id + "_active");
+          }   
+          currentWindow.style.display = "none";
+          currentButton.classList.remove(event.target.id + "_active");    
+          console.log(currentButton.classList);
+        }
+      }
+
+      else {
+        if (!event.target.closest(".modalWindow")) {
+          for (let i = 0; i < modalWindows.length; i++) {
+            modalWindows[i].style.display = "none";
+          }
+  
+          for (let k = 0; k < modalButtons.length; k++) {
+            modalButtons[k].classList.remove(modalButtons[k].id + "_active");
+          }
+        }
+      }
+    }, false);
+  }
+
   return (
     <BrowserRouter>
       <Switch>
