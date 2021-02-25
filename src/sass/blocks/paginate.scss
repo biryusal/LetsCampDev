@@ -10,7 +10,7 @@
       padding: 15px 20px;
       margin: 0 5px;
       border-radius: 100px;
-      border: 1px solid #313131;
+      border: 1px solid #4278BE;
       color: #141414;
       @media screen and (max-width: 767px) {
         margin: 0px;
@@ -26,7 +26,7 @@
     &_active {
       a {
         color: #fff;
-        background: #313131;
+        background: #4278BE;
       }
     }
     &_disabled {
