@@ -10,19 +10,6 @@ import SideModul from "../SideModul";
 export default (props) => {
   let {isScrolled} = props;
 
-  function sideModulHandler() {
-    if (document.getElementById("sideModul").style.display == "block") {
-      document.getElementById("sideModul").style.display = "none"
-      document.getElementById("header__auth").classList.remove("header__auth_active");
-    }
-    else {
-      document.getElementById("sideModul").style.display = "block";
-      document.getElementById("header__auth").classList.add("header__auth_active");
-    }
-  }
-
-
-
   return(
     <header className = {isScrolled ? "header header_scrolled header_fixed" : "header"}>
       <div className = "container header__wrapper header__wrapper_desktop">
@@ -35,11 +22,11 @@ export default (props) => {
           <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
           <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/reviews">Отзывы</NavLink>
         </div>}
-        <button onClick = {sideModulHandler} id = "header__auth" className = {isScrolled ? "header__auth header__auth_gray modalWindowButton" : "header__auth modalWindowButton"}>
+        <button id = "sideModulButton" className = {isScrolled ? "header__auth header__auth_gray modalWindowButton" : "header__auth modalWindowButton"}>
           <img className = "header__auth__image" src = {BurgerMenu} alt = "Логотип LetsCamp"></img>
           <img className = "header__auth__image" src = {User} alt = "Логотип LetsCamp"></img>
         </button>
-        <SideModul sideModulCloseButton = {sideModulHandler}/>
+        <SideModul/>
       </div>
       <div className = "container header__wrapper header__wrapper_mobile">
         <input type = "text" className = "header__input" placeholder = "Куда едем?"></input>

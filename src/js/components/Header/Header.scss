@@ -94,6 +94,9 @@
     background-color: white;
     border-radius: 30px;
     transition: .4s;
+    &__image {
+      pointer-events: none;
+    }
     &_active {
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
       transition: .4s;
@@ -167,3 +170,9 @@
   } 
 }
 
+.sideModulButton {
+  &_active {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: .4s;
+  }
+}
