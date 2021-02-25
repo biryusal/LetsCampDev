@@ -11,10 +11,6 @@ import MobileDownBar from "../MobileDownbar/MobileDownBar";
 export default () => {
   const [isHeaderScrolled, setHeaderScrolled] = useState(false);
 
-  document.addEventListener("click", (event) => {
-    console.log(event.target);
-  });
-
   window.onscroll = function() {scrollFunction()};
 
   function scrollFunction() {
