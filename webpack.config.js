@@ -1,9 +1,9 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
+
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 const webpack = require("webpack");
@@ -105,7 +105,7 @@ module.exports = {
     ]
   },
   optimization: {
-    minimize: false,
+    minimize: true,
     minimizer: [
       new UglifyJsPlugin({
         test: /\.js(\?.*)?$/i,
@@ -128,29 +128,23 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "./index.html",
-      favicon: "./src/favicon.ico"
-    }),
     new ImageMinimizerPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      loader: true,
       minimizerOptions: {
         plugins: [
-          ['gifsicle', { interlaced: true }],
-          ['jpegtran', { progressive: true }],
-          ['optipng', { optimizationLevel: 5 }],
-          [
-            'svgo',
-            {
-              plugins: [
-                {
-                  removeViewBox: false,
-                },
-              ],
-            },
-          ],
-        ],
-      },
+          ['mozjpeg', { 
+            quality: 70,
+            progressive: true,
+            optimizationLevel: 3 
+          }],
+          ['optipng', { 
+            quality: 70,
+            optimizationLevel: 15,
+            progressive: true
+          }],
+        ]
+      }
     }),
     new webpack.HotModuleReplacementPlugin()
   ]
