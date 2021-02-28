@@ -3,8 +3,11 @@
   background-color: transparent;
   display: flex;
   align-items: center;
+  opacity: 1;
   z-index: 9999;
-
+  transition: .2s;
+  padding: 0px;
+  flex-wrap: wrap;
   @media screen and (min-width: 1440px) {
     height: 80px;
   }
@@ -17,9 +20,48 @@
     height: 60px;
   }
 
+  &_opened {
+    transition: .2s;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    box-shadow: 0 0 0 9999px #000000b0 !important;
+    
+    @media screen and (min-width: 1440px) {
+      height: 120px;
+      padding: 20px 0px;
+    }
+  
+    @media screen and (max-width: 1439px) and (min-width: 768px) {
+      height: 110px;
+      padding: 15px 0px;
+      
+    }
+  
+    @media screen and (max-width: 767px) {
+      height: 100px;
+      padding: 10px 0px;
+    }
+  }
+
+  &_closed {
+    animation-name: onHeaderOpen;
+    animation-duration: .2s;
+  }
+
   &_scrolled {
     background-color: white;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  &__router {
+    text-align: center;
+    color: black;
+    &_disabled {
+      display: none;
+    }
+    &_scrolled {
+      
+    }
   }
 
   &_fixed {
@@ -80,6 +122,15 @@
   &__link {
     color: white;
     font-size: 16px;
+    &_scrolled {
+      color: black;
+      animation-name: linksOnHeaderOpen;
+      animation-duration: .5s;
+      margin: 0 10px;
+      &_active {
+        border-bottom: 2px solid #000;
+      }
+    }
     &_active {
       border-bottom: 2px solid #fff;
       padding-bottom: 5px;

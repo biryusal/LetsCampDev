@@ -1,0 +1,17 @@
+@keyframes onHeaderOpen {
+  from {
+    align-items: flex-start;
+  }
+  to {
+    align-items: center;
+  }
+}
+
+@keyframes linksOnHeaderOpen {
+  from {
+    margin: 0 -10px;
+  }
+  to {
+    margin: 0 10px;
+  }
+}
