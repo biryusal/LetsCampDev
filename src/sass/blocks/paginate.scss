@@ -6,11 +6,11 @@
     margin-bottom: 100px;
     padding: 0px;
     a {
+      font-family: "Golos Bold";
       cursor: pointer;
       padding: 15px 20px;
       margin: 0 5px;
       border-radius: 100px;
-      border: 1px solid #4278BE;
       color: #141414;
       @media screen and (max-width: 767px) {
         margin: 0px;
@@ -31,8 +31,7 @@
     }
     &_disabled {
       a {
-        color: #E5E7E2;
-        border: 1px solid #E5E7E2;
+        color: rgb(165, 165, 165)
       }
     }
   }
