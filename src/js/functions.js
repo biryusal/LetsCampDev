@@ -73,6 +73,15 @@ export async function getCampingByFilter(name) {
   return result;
 }
 
+export function setHeaderClosedOnShadowClick(e) {
+  if (!e.target.closest("header")) {
+    header.classList.remove("header_opened");
+    header.classList.add("header_closed");
+    headerRouter.classList.remove("header__router_scrolled");
+    headerRouter.classList.add("header__router_disabled");
+  }
+}
+
 export function revokeSpecialFiltersCheckboxes() {
   document.getElementById("WiFi").checked = false;
   document.getElementById("food").checked = false;

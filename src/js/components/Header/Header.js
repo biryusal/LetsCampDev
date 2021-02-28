@@ -11,11 +11,24 @@ import { setHeaderClosedOnShadowClick } from "../../functions";
 export default (props) => {
   let {isScrolled} = props;
 
-  function routerHandler() {
-    let header = document.getElementById("header"),
-        headerRouter = document.getElementById("headerRouter");
-    console.log(headerRouter);
+  let header = document.getElementById("header"),
+      headerRouter = document.getElementById("headerRouter"),
+      headerOutfit = document.getElementById("headerOutfit");
+
+
+  function headerOutfitHandler() {
+    headerOutfit.classList.remove("header__outfit_opened");
+    headerOutfit.classList.add("header__outfit_closed");
+    header.classList.remove("header_opened");
+    header.classList.add("header_closed");
+    headerRouter.classList.remove("header__router_scrolled");
+    headerRouter.classList.add("header__router_disabled");
+  }
+
+  function routerHandler() {    
     if (header.classList.contains("header_opened")) {
+      headerOutfit.classList.remove("header__outfit_opened");
+      headerOutfit.classList.add("header__outfit_closed");
       header.classList.remove("header_opened");
       header.classList.add("header_closed");
       headerRouter.classList.remove("header__router_scrolled");
@@ -23,6 +36,8 @@ export default (props) => {
     }
 
     else {
+      headerOutfit.classList.add("header__outfit_opened");
+      headerOutfit.classList.remove("header__outfit_closed");
       header.classList.remove("header_closed");
       header.classList.add("header_opened");
       headerRouter.classList.remove("header__router_disabled");
@@ -33,6 +48,7 @@ export default (props) => {
   }
 
   return(
+    <>
     <header id = "header" className = {isScrolled ? "header header_scrolled header_fixed" : "header"}>
       <div className = "container header__wrapper header__wrapper_desktop">
         <NavLink to = "/">
@@ -73,5 +89,7 @@ export default (props) => {
         <input onClick = {routerHandler} type = "text" className = "header__input" placeholder = "Куда едем?"></input>
       </div>
     </header>
+    <div id = "headerOutfit" onClick = {headerOutfitHandler} className = {isScrolled ? "header__outfit header__outfit_closed" : "header__outfit_closed"}></div>
+    </>
   )
 }

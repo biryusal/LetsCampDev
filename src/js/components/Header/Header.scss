@@ -20,11 +20,30 @@
     height: 60px;
   }
 
+  &__outfit {
+    position: fixed;
+    display: none;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    &_closed {
+      display: none;
+    }
+    &_opened {
+      display: block;
+    }
+  }
+
   &_opened {
     transition: .2s;
     align-items: flex-start;
     flex-wrap: wrap;
-    box-shadow: 0 0 0 9999px #000000b0 !important;
+    z-index: 9999;
     
     @media screen and (min-width: 1440px) {
       height: 120px;

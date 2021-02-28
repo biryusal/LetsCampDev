@@ -59,8 +59,8 @@ function Campings(props) {
             <CampingsList campings = {filterApplied && currentFilteredCampings ? currentFilteredCampings : campings} />
           </div>}
           <ReactPaginate 
-              previousLabel = "Пред."
-              nextLabel = "След."
+              previousLabel = "<"
+              nextLabel = ">"
               pageCount = {filterApplied ? Math.ceil(campings.length / 20) : Math.ceil(amountOfCampings / 20)} pageRangeDisplayed = {3} marginPagesDisplayed = {1}
               containerClassName = "paginate__wrapper"
               previousClassName = "paginate__link"
