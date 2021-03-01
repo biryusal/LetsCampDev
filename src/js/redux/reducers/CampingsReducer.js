@@ -1,4 +1,4 @@
-import { APPLY_FILTERS_FAILURE, APPLY_FILTERS_REDIRECT, APPLY_FILTERS_REQUEST, APPLY_FILTERS_SUCCESS, CHANGE_FILTERS, GET_AMOUNT_OF_CAMPINGS_FAILURE, GET_AMOUNT_OF_CAMPINGS_REQUEST, GET_AMOUNT_OF_CAMPINGS_SUCCESS, GET_CAMPINGS_BY_PAGEID_FAILURE, GET_CAMPINGS_BY_PAGEID_REQUEST, GET_CAMPINGS_BY_PAGEID_SUCCESS, GET_CAMPING_BY_ID_FAILURE, GET_CAMPING_BY_ID_REQUEST, GET_CAMPING_BY_ID_SUCCESS, GET_FILTERED_CAMPINGS_BY_PAGEID_FAILURE, GET_FILTERED_CAMPINGS_BY_PAGEID_REQUEST, GET_FILTERED_CAMPINGS_BY_PAGEID_SUCCESS, RESET_FILTERS_REDIRECT, REVOKE_FILTERS, UPDATE_AMOUNT_OF_CAMPINGS } from "../types/types";
+import { APPLY_FILTERS_FAILURE, APPLY_FILTERS_REDIRECT, APPLY_FILTERS_REQUEST, APPLY_FILTERS_SUCCESS, CHANGE_FILTERS, GET_AMOUNT_OF_CAMPINGS_FAILURE, GET_AMOUNT_OF_CAMPINGS_REQUEST, GET_AMOUNT_OF_CAMPINGS_SUCCESS, GET_CAMPINGS_BY_PAGEID_FAILURE, GET_CAMPINGS_BY_PAGEID_REQUEST, GET_CAMPINGS_BY_PAGEID_SUCCESS, GET_CAMPING_BY_ID_FAILURE, GET_CAMPING_BY_ID_REQUEST, GET_CAMPING_BY_ID_SUCCESS, GET_FILTERED_CAMPINGS_BY_PAGEID_FAILURE, GET_FILTERED_CAMPINGS_BY_PAGEID_REQUEST, GET_FILTERED_CAMPINGS_BY_PAGEID_SUCCESS, RESET_FILTERS_REDIRECT, REVOKE_ADDITIONAL_FILTERS, REVOKE_SPECIAL_FILTERS, UPDATE_AMOUNT_OF_CAMPINGS } from "../types/types";
 
 const initialState = {
   isUserLoggedIn: null,
@@ -58,16 +58,19 @@ export default function CampingsReducer(state = initialState, action) {
       return {...state, amountOfCampings: action.payload}
     case CHANGE_FILTERS:
       return {...state, campingFilters: Object.assign({}, state.campingFilters, action.payload) }
-    case REVOKE_FILTERS:
+    case REVOKE_SPECIAL_FILTERS:
       return {...state, campingFilters: {
-        WiFi: false,
         animals: false,
         electricity: false,
         food: false,
         isWater: false,
         kids: false,
-        nonsmokeZone: false,
         parkSpace: false,
+      }, filterApplied: false}
+    case REVOKE_ADDITIONAL_FILTERS:
+      return {...state, campingFilters: {
+        WiFi: false,
+        nonsmokeZone: false,
         peopleDisabilities: false,
         sleepSpace: false
       }, filterApplied: false}

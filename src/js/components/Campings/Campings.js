@@ -11,6 +11,7 @@ import MobileDownbar from "../MobileDownbar/MobileDownBar";
 import CampingsList from "./CampingsList";
 import { applyFiltersRedirect, getAmountOfCampings, getCampingsByPageId, getFilteredCampingsByPageId, resetFiltersRedirect } from "../../redux/actions/CampingsActions";
 import SpecialFilter from "./Filters/SpecialFilter";
+import Filters from "./Filters";
 
 function Campings(props) {
   const {getCampingsByPageId, getAmountOfCampings, amountOfCampings, campings, resetFiltersRedirect, 
@@ -50,9 +51,9 @@ function Campings(props) {
         <section className = "campings__wrapper">
           <h1 className = "campings__header">Кемпинги</h1>
           <div className = "campings__filters">
-            <button id = "specialFilterButton" className = "campings__filter modalWindowButton">Специальные</button>
-            <SpecialFilter />
-            
+            <button id = "specialFilterButton" className = "campings__filter modalWindowButton">Основные · {6}</button>
+            <button id = "additionalFilterButton" className = "campings__filter modalWindowButton">Дополнительные · {4}</button>
+            <Filters />
           </div>
           <h2 className = "campings__subheader">Все кемпинги (всего: {filterApplied ? campings.length : amountOfCampings})</h2>
           {isCampingsLoading ? <div className = "campings__fetching"><ClipLoader color = "#AFAFAF"/></div>  : <div className = "campings__list">

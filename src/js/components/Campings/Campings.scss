@@ -28,7 +28,7 @@
     }
     @media screen and (min-width: 1440px) {
       font-size: 16px;
-      min-width: 130px;
+      padding: 0 15px;
       height: 40px;
       border-radius: 30px;
     }
@@ -43,9 +43,6 @@
       min-width: 100px;
       height: 30px;
       border-radius: 30px;
-      &:not(:last-of-type) {
-        display: none;
-      }
     }
   }
   &__list {
@@ -86,9 +83,17 @@
   }
 }
 
+.additionalFilterButton,
 .specialFilterButton {
   &_active {
     border: 2px solid rgb(44, 44, 44) !important;
     background-color:rgb(235, 235, 235);
   }
 }
+
+/** 
+Еда
+Вода
+Электричество
+Места для сна
+*/ 

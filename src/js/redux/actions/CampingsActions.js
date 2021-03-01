@@ -2,8 +2,8 @@ import React from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { keys } from "regenerator-runtime";
 import { database } from "../../firebase";
-import { asyncGetAmountOfCampings, asyncGetCampingById, getCampingsByPageIdAndSize, revokeSpecialFiltersCheckboxes, getCampingByFilter } from "../../functions";
-import { APPLY_FILTERS_FAILURE, APPLY_FILTERS_REDIRECT, APPLY_FILTERS_REQUEST, APPLY_FILTERS_SUCCESS, CHANGE_FILTERS, GET_AMOUNT_OF_CAMPINGS_FAILURE, GET_AMOUNT_OF_CAMPINGS_REQUEST, GET_AMOUNT_OF_CAMPINGS_SUCCESS, GET_CAMPINGS_BY_PAGEID_FAILURE, GET_CAMPINGS_BY_PAGEID_REQUEST, GET_CAMPINGS_BY_PAGEID_SUCCESS, GET_CAMPING_BY_ID_FAILURE, GET_CAMPING_BY_ID_REQUEST, GET_CAMPING_BY_ID_SUCCESS, GET_FILTERED_CAMPINGS_BY_PAGEID_FAILURE, GET_FILTERED_CAMPINGS_BY_PAGEID_REQUEST, GET_FILTERED_CAMPINGS_BY_PAGEID_SUCCESS, RESET_FILTERS_REDIRECT, REVOKE_FILTERS, UPDATE_AMOUNT_OF_CAMPINGS } from "../types/types"
+import { asyncGetAmountOfCampings, asyncGetCampingById, getCampingsByPageIdAndSize, revokeSpecialFiltersCheckboxes, getCampingByFilter, revokeAdditionalFiltersCheckboxes } from "../../functions";
+import { APPLY_FILTERS_FAILURE, APPLY_FILTERS_REDIRECT, APPLY_FILTERS_REQUEST, APPLY_FILTERS_SUCCESS, CHANGE_FILTERS, GET_AMOUNT_OF_CAMPINGS_FAILURE, GET_AMOUNT_OF_CAMPINGS_REQUEST, GET_AMOUNT_OF_CAMPINGS_SUCCESS, GET_CAMPINGS_BY_PAGEID_FAILURE, GET_CAMPINGS_BY_PAGEID_REQUEST, GET_CAMPINGS_BY_PAGEID_SUCCESS, GET_CAMPING_BY_ID_FAILURE, GET_CAMPING_BY_ID_REQUEST, GET_CAMPING_BY_ID_SUCCESS, GET_FILTERED_CAMPINGS_BY_PAGEID_FAILURE, GET_FILTERED_CAMPINGS_BY_PAGEID_REQUEST, GET_FILTERED_CAMPINGS_BY_PAGEID_SUCCESS, RESET_FILTERS_REDIRECT, REVOKE_ADDITIONAL_FILTERS, REVOKE_FILTERS, REVOKE_SPECIAL_FILTERS, UPDATE_AMOUNT_OF_CAMPINGS } from "../types/types"
 
 export function getCampingsByPageId(pageID) {
   return async function(dispatch) {
@@ -203,7 +203,10 @@ export function applyFilters(filters) {
       });
       if (isFiltersRevoked) {
         dispatch({
-          type: REVOKE_FILTERS
+          type: REVOKE_SPECIAL_FILTERS
+        })
+        dispatch({
+          type: REVOKE_ADDITIONAL_FILTERS
         })
       }
       dispatch(applyFiltersRedirect("campings/page/1"));
@@ -253,9 +256,17 @@ export function updateAmountOfCampings(amount) {
 export function revokeSpecialFilters() {
   return (dispatch) => {
     dispatch({
-      type: REVOKE_FILTERS
+      type: REVOKE_SPECIAL_FILTERS
     })
     revokeSpecialFiltersCheckboxes();
   }
 }
 
+export function revokeAdditionalFilters() {
+  return (dispatch) => {
+    dispatch({
+      type: REVOKE_ADDITIONAL_FILTERS
+    })
+    revokeAdditionalFiltersCheckboxes();
+  }
+}
