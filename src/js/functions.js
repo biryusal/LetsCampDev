@@ -83,14 +83,17 @@ export function setHeaderClosedOnShadowClick(e) {
 }
 
 export function revokeSpecialFiltersCheckboxes() {
-  document.getElementById("WiFi").checked = false;
   document.getElementById("food").checked = false;
   document.getElementById("isWater").checked = false;
   document.getElementById("animals").checked = false;
-  document.getElementById("nonsmokeZone").checked = false;
   document.getElementById("electricity").checked = false;
   document.getElementById("kids").checked = false;
   document.getElementById("parkSpace").checked = false;
+}
+
+export function revokeAdditionalFiltersCheckboxes() {
+  document.getElementById("WiFi").checked = false;
+  document.getElementById("nonsmokeZone").checked = false;
   document.getElementById("sleepSpace").checked = false;
-  document.getElementById("peopleDisabilities").checked = false;
+  document.getElementById("peopleDisabilities").checked = false
 }
