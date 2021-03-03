@@ -1,0 +1,35 @@
+.region {
+  border: 0px;
+  padding: 0px;
+  background-color: white;
+  border: 1px solid rgb(177, 177, 177);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  height: 400px;
+  overflow-y: scroll;
+  display: none;
+  position: absolute;
+  &__header {
+    font-size: 16px;
+    display: flex;
+    padding: 0 10px;
+    align-items: center;
+    height: 40px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    font-family: "Golos Medium";
+  }
+  @media screen and (min-width: 1440px) {
+    margin-top: 75px;
+  }
+  &__option {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    &:hover {
+      background-color: rgb(212, 212, 212);
+    }
+    @media screen and (min-width: 1440px) {
+      height: 40px;
+    }
+  }
+}
