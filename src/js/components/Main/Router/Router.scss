@@ -23,12 +23,19 @@
       display: none;
     }
   }
+  &__city {
+    white-space: nowrap;
+    flex-grow: 0;
+    text-overflow: ellipsis;
+  }
   &__info {
     display: flex;
+    position: relative;
+    pointer-events: none;
+    z-index: -1;
     flex-direction: column;
-    width: 100%;
     border-left: 1px solid rgb(192, 192, 192);
-    padding-left: 22px;
+    padding: 0 15px;
     @media screen and (min-width: 1440px) {
       
     }
@@ -42,11 +49,17 @@
   }
   &__option {
     cursor: pointer;
-    width: 100%;
+    width: 25%;
     display: flex;
     align-items: center; 
     border-collapse: collapse;
     transition: .1s;
+    z-index: 10;
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     &:first-of-type {
       .router__info {
         border: 0px;
@@ -68,5 +81,11 @@
         }
       }
     }
+  }
+}
+
+.selectCityButton {
+  &_active {
+    background-color: rgba(0, 0, 0, 0.25);
   }
 }
