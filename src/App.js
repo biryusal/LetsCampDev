@@ -40,7 +40,6 @@ function App() {
           }   
           currentWindow.style.display = "none";
           currentButton.classList.remove(event.target.id + "_active");    
-          console.log(currentButton.classList);
         }
       }
 
