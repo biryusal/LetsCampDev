@@ -1,4 +1,5 @@
 .modalWindow {
+  z-index: 9999;
   &__window {
     &_visible {
       display: block;
