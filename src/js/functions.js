@@ -97,3 +97,31 @@ export function revokeAdditionalFiltersCheckboxes() {
   document.getElementById("sleepSpace").checked = false;
   document.getElementById("peopleDisabilities").checked = false
 }
+
+export function getNameOfClickedRegion(e) {
+  if (e.target.classList.contains("region__option")) {
+    closeModalWindows(e);
+    return e.target.innerHTML;
+  }
+}
+
+export function closeModalWindows(event) {
+  let modalButtons = document.getElementsByClassName("modalWindowButton"),
+      modalWindows = document.getElementsByClassName("modalWindow");
+
+
+  for (let i = 0; i < modalWindows.length; i++) {
+    modalWindows[i].style.display = "none";
+  }
+  
+  for (let k = 0; k < modalButtons.length; k++) {
+    modalButtons[k].classList.remove(modalButtons[k].id + "_active");
+  }   
+
+  resetOptionsScroll(event);
+}
+
+export function resetOptionsScroll(event) {
+  let currentWindow = document.getElementById(event.target.parentNode.id);
+  currentWindow.scrollTop = 0;
+}
