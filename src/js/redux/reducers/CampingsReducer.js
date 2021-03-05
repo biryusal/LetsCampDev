@@ -14,6 +14,10 @@ const initialState = {
   filtersError: null,
   filterApplied: null,
   filterRedirect: null,
+  datepicker: {
+    from: new Date(),
+    to: null
+  },
   campingFilters: {
     WiFi: false,
     animals: false,
