@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {database} from "./firebase";
 
 export function getLoggedKey() {
@@ -124,4 +125,10 @@ export function closeModalWindows(event) {
 export function resetOptionsScroll(event) {
   let currentWindow = document.getElementById(event.target.parentNode.id);
   currentWindow.scrollTop = 0;
+}
+
+export function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
 }
