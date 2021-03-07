@@ -3,12 +3,13 @@ import PlusIcon from "../../../img/plus.svg";
 import MinusIcon from "../../../img/minus.svg";
 import "./SelectGuests.scss";
 
-export default () => {
+export default (props) => {
+  let {desktop, mobile} = props;
   const [adults, setAdults] = useState(1),
         [kids, setKids] = useState(1),
         [rooms, setRooms] = useState(1);
   return (
-    <div className = "modalWindow selectGuests__wrapper" id = "selectGuests">
+    <div className = "modalWindow selectGuests__wrapper" id = {desktop ? "selectGuests" : (mobile ? "selectGuestsMobile" : null)}>
       <div className = "selectGuests__option">
         <span className = "selectGuests__name">Взрослых</span>
         <div className = "selectGuests__value">

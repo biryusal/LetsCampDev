@@ -11,6 +11,11 @@
     flex-wrap: wrap;
     align-content: space-between;
     top: 155px;
+    @media screen and (max-width: 767px) {
+      margin-top: 110px;
+      width: 66%;
+      margin-left: -1%;
+    }
   }
   &__option {
     font-family: "Golos Medium";
