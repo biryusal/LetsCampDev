@@ -17,9 +17,22 @@
     height: 40px;
     border-bottom: 1px solid rgb(212, 212, 212);
     font-family: "Golos Medium";
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      height: 35px;
+    }
   }
   @media screen and (min-width: 1440px) {
     margin-top: 75px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    margin-top: 65px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: 58px;
+    width: 74%;
   }
   &__option {
     cursor: pointer;
@@ -30,6 +43,18 @@
     }
     @media screen and (min-width: 1440px) {
       height: 40px;
+      padding: 5px;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      height: 35px;
+      padding: 3px;
+    }
+
+    @media screen and (max-width: 767px) {
+      height: 30px;
+      padding: 5px;
+      font-size: 14px;
     }
   }
 }

@@ -4,9 +4,9 @@ import { setNameOfClickedRegion } from "../../redux/actions/CampingsActions";
 import "./SelectCity.scss";
 
 function SelectCity(props) {
-  let {setNameOfClickedRegion, selectedRegion} = props;
+  let {setNameOfClickedRegion, selectedRegion, desktop, mobile} = props;
   return (
-    <div onClick = {(e) => setNameOfClickedRegion(e)} name="region" className = "region modalWindow" id="selectCity">
+    <div onClick = {(e) => setNameOfClickedRegion(e)} name="region" className = "region modalWindow" id={desktop ? "selectCity" : (mobile ? "selectCityMobile" : null)}>
 			<span className = "region__header">{selectedRegion ? selectedRegion : "Выберите регион"}</span>
     	<option className = "region__option" value="Адыгея">Республика Адыгея</option>
     	<option className = "region__option" value="Алтай">Республика Алтай </option>
