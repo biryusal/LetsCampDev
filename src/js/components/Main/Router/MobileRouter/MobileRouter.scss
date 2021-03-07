@@ -1,0 +1,92 @@
+.mobileRouter {
+  &__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    flex-grow: 1;
+    height: 100%;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    &_datepicker {
+      width: 100%;
+    }
+  }
+
+  &__input {
+    &_background svg {
+      pointer-events: none;
+      height: 25px;
+      width: 25px;
+    }
+    &_active {
+      svg {
+        fill: #4D79BA;
+      }
+    }
+  }
+  
+  &__select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgb(221, 221, 221);
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 5px;
+    padding-right: 10px;
+    cursor: pointer;
+  }
+
+  &__text {
+    pointer-events: none;
+    color: rgb(182, 182, 182);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__inputName {
+    font-family: "Golos Medium";
+    font-size: 14px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button {
+    &_go {
+      height: 39px;
+      width: 120px;
+      font-family: "Golos Bold";
+      border-radius: 5px;
+      color: white;
+      background-color: #4D79BA;
+    }
+
+    &_clear {
+      height: 35px;
+      width: 100px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid black;
+    }
+  }
+}
+
+.selectCityMobileButton {
+  &_active {
+    fill: #4D79BA;
+  }
+}
