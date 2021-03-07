@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { connect } from "react-redux";
 import SelectCity from "../../SelectCity";
-import DatePicker, {registerLocale, setDefaultLocale} from "react-datepicker";
+import DatePicker, {registerLocale} from "react-datepicker";
 import {ru} from "date-fns/esm/locale";
 import "./Router.scss";
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,29 +9,27 @@ import { addDays } from "date-fns";
 import SelectGuests from "../../SelectGuests";
 
 function Router(props) {
-  const {region, datepickerFrom, datepickerTo} = props;
+  const {region, routerHandler, isHeader} = props;
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState();
   registerLocale("ru", ru);
   function handleDateChange(dateName, dateValue) {
     if (dateName === "startDateTime") {
       setStartDate(dateValue);
-      console.log(startDate);
       setEndDate(addDays(dateValue, 1));
-      console.log(endDate);
     } else {
       setEndDate(dateValue);
     }
   }
   return (
-    <div className = "router router__wrapper">
+    <div className = {isHeader ? "router router__wrapper router__wrapper_circled router__wrapper_header" : "router router__wrapper"}>
       <div className = "router__option modalWindowButton" id = "selectCityButton">
         <div className = "router__info">
           <span className = "router__header">Местоположение</span>
           <span className = "router__city">{region ? region : "Куда едете?"} </span>
         </div>
       </div>
-      <SelectCity selectedRegion = {region ? region : null}/>
+      <SelectCity desktop selectedRegion = {region ? region : null}/>
       <DatePicker
       minDate = {new Date()}
       value = {startDate}
@@ -76,10 +74,10 @@ function Router(props) {
       onChange = {date => handleDateChange("endDateTime", date)} />
       <div className = "router__option modalWindowButton" id = "selectGuestsButton">
         <div className = "router__info">
-          <span className = "router__header">Количество гостей</span>
+          <span className = "router__header">Гости</span>
           <span className = "router__text">Сколько гостей?</span>
         </div>
-        <SelectGuests />
+        <SelectGuests desktop/>
       </div>
     </div>
   )
