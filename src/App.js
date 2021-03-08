@@ -7,6 +7,7 @@ import {
 import { connect } from "react-redux";
 import Campings from "./js/components/Campings/Campings";
 import CampingPage from "./js/components/Campings/CampingPage/CampingPage";
+import ScrollToTop from "./js/functions";
 
 function App() {
 
@@ -58,7 +59,8 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter onUpdate = {() => window.scrollTo(0, 0)}>
+      <ScrollToTop />
       <Switch>
         <Route exact path = "/" render = {() => <Main />}></Route>
         <Route exact path = "/campings/page/:page" render = {() => <Campings />}></Route>

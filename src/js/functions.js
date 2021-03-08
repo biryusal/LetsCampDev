@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import {database} from "./firebase";
 
 export function getLoggedKey() {
@@ -123,3 +124,14 @@ export function addDays(date, days) {
   result.setDate(result.getDate() + days);
   return result;
 }
+
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
