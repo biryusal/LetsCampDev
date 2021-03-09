@@ -7,6 +7,7 @@ import "./Router.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "date-fns";
 import SelectGuests from "../../SelectGuests";
+import { DateToFormated } from "../../../functions";
 
 function Router(props) {
   const {region, routerHandler, isHeader} = props;
@@ -45,7 +46,7 @@ function Router(props) {
           <div className = "router__datePicker">
             <div className = "router__info">
               <span className = "router__header">Прибытие</span>
-              <span className = "router__text">{startDate ? startDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату заезда"}</span>
+              <span className = "router__text">{startDate ? DateToFormated(startDate) : "Выберите дату заезда"}</span>
             </div>
           </div>}
       locale = "ru" 
@@ -65,7 +66,7 @@ function Router(props) {
         <div className = "router__datePicker">
           <div className = "router__info">
             <span className = "router__header">Отбытие</span>
-            <span className = "router__text">{endDate ? endDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату выезда"}</span>
+            <span className = "router__text">{endDate ? DateToFormated(endDate) : "Выберите дату выезда"}</span>
           </div>
         </div>}
       locale = "ru" 

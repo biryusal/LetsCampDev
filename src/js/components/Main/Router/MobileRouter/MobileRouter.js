@@ -9,11 +9,12 @@ import SelectCity from "../../../SelectCity";
 import { connect } from "react-redux";
 import DatePicker, {registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { addDays } from "date-fns";
 import SelectGuests from "../../../SelectGuests";
+import { addDays, DateToFormated } from "../../../../functions";
 
 function MobileRouter(props) {
-  let {region, datePickerFrom, datePickerTo} = props;
+  let {region} = props;
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState();
 
@@ -22,12 +23,12 @@ function MobileRouter(props) {
   function handleDateChange(dateName, dateValue) {
     if (dateName === "startDateTime") {
       setStartDate(dateValue);
-      setEndDate(addDays(dateValue, 1));
+      setEndDate(dateValue);
     } else {
       setEndDate(dateValue);
     }
   }
-  
+
   return( 
     <div className = "mobileRouter__wrapper">
       <div className = "mobileRouter__option">
@@ -58,7 +59,7 @@ function MobileRouter(props) {
         
         customInput = {
           <div className = {startDate ? "mobileRouter__select mobileRouter__select_active" : "mobileRouter__select"}>
-              <span className = {startDate ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{startDate ? startDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату выезда"}</span>
+              <span className = {startDate ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{startDate ? DateToFormated(startDate) : "Выберите дату заезда"}</span>
               <div className = "mobileRouter__input_background">
                 <DateIcon />
               </div>
@@ -84,7 +85,7 @@ function MobileRouter(props) {
         customInput = {
 
             <div className = {endDate ? "mobileRouter__select mobileRouter__select_active" : "mobileRouter__select"}>
-              <span className = {endDate ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{endDate ? endDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату выезда"}</span>
+              <span className = {endDate ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{endDate ? DateToFormated(endDate) : "Выберите дату выезда"}</span>
               <div className = "mobileRouter__input_background">
                 <DateIcon />
               </div>
