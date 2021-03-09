@@ -22,12 +22,13 @@ export default (props) => {
             <span className = "campingCard__reviews">25 отзывов</span>
           </NavLink>
         </div>
+        <span className = "campingCard__price">{pricePerDay} рублей/ночь</span>
       </div>
       <div className = "campingCard__info">
         <NavLink name = "campingLink" exact to = {"/campings/id/"+ id}>
           <h3 className = "campingCard__name">{name}</h3>
         </NavLink>
-        <span className = "campingCard__price">{pricePerDay} рублей/ночь</span>
+        <span className = "campingCard__description">Здесь очень краткое и понятное описание кемпинга, какие услуги предоставляет.</span>
       </div>
     </div>
   )
