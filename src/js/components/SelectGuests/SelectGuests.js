@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import PlusIcon from "../../../img/plus.svg";
 import MinusIcon from "../../../img/minus.svg";
+import { connect } from "react-redux";
+import {setGuestsOutput} from "../../redux/actions/CampingsActions";
 import "./SelectGuests.scss";
-import { closeModalWindows } from "../../functions";
 
-export default (props) => {
-  let {desktop, mobile} = props;
+function SelectGuests(props) {
+  let {desktop, mobile, setGuestsOutput} = props;
   const [adults, setAdults] = useState(1),
         [kids, setKids] = useState(1),
         [rooms, setRooms] = useState(1),
@@ -15,8 +16,8 @@ export default (props) => {
     let selectGuestsWindow = desktop ? document.getElementById("selectGuests") : document.getElementById("selectGuestsMobile");
     if ((adults != 0 && (adults != 0 || kids != 0) && rooms >= 1)) {
       setError(null);
+      setGuestsOutput("Взрослых: " + adults + "; " + (kids ? ("Детей: " + kids + "; ") : "") + "Комнат: " + rooms);
       selectGuestsWindow.style.display = "none";
-      
     }
     else {
       if (adults == 0 && kids != 0) {
@@ -176,3 +177,11 @@ export default (props) => {
     </div>
   )
 }
+
+const MapDispatchToProps = (dispatch) => {
+  return {
+    setGuestsOutput: (output) => dispatch(setGuestsOutput(output))
+  }
+};
+
+export default connect(null, MapDispatchToProps)(SelectGuests);

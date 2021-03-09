@@ -101,7 +101,9 @@
   }
 }
 
-#selectGuestsMobile,
-#selectGuestsDesktop {
+#selectGuestsMobile {
+  display: none;
+}
+#selectGuests {
   display: none;
 }
