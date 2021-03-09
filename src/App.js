@@ -7,7 +7,7 @@ import {
 import { connect } from "react-redux";
 import Campings from "./js/components/Campings/Campings";
 import CampingPage from "./js/components/Campings/CampingPage/CampingPage";
-import ScrollToTop from "./js/functions";
+import {ScrollToTop} from "./js/functions";
 
 function App() {
 
