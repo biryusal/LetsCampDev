@@ -192,7 +192,6 @@ export function applyFilters(filters) {
     }
 
     catch(e) {
-      console.log(e);
       errorMessage = e.message;
     }
 
