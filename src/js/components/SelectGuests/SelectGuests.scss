@@ -1,6 +1,6 @@
 .selectGuests {
   &__wrapper {
-    position: absolute;
+    position:absolute;
     background-color: white;
     border: 1px solid rgb(240, 240, 240);
     padding: 20px;
@@ -10,11 +10,19 @@
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
-    top: 155px;
+    @media screen and (min-width: 1440px) {
+      margin-left: 610px;
+      margin-top: 74px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+      margin-top: 64px;
+      margin-left: 400px;
+      min-width: 200px;
+    }
     @media screen and (max-width: 767px) {
-      margin-top: 110px;
-      width: 66%;
-      margin-left: -1%;
+      margin-top: 58px;
+      width: calc(70% - 25px);
+      min-width: 0px;
     }
   }
   &__option {
@@ -29,7 +37,14 @@
   &__value {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    @media screen and (min-width: 768px) {
+      max-width: 35%;
+      flex-grow: 1;
+    }
+    @media screen and (max-width: 767px) {
+      flex-grow: 1;
+      max-width: 40%;
+    }
   }
   &__number {
     font-family: "Golos Bold";
@@ -47,8 +62,46 @@
       }
     }
   }
+
+  &__goButton {
+    color:white;
+    background-color:#4D79BA;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 16px;
+    font-family: "Golos Medium";
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  &__clearButton {
+    color: black;
+    font-family: "Golos Bold";
+    font-size: 16px;
+    padding-bottom: 3px;
+    border-bottom: 2px solid black;
+  }
+
+  &__saveButton {
+    color:white;
+    background-color:#4D79BA;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: "Golos Medium";
+  }
+
+  &__errorMessage {
+    color: rgb(151, 21, 21);
+  }
 }
 
-#selectGuests {
+#selectGuestsMobile,
+#selectGuestsDesktop {
   display: none;
 }
