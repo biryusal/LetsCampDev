@@ -8,13 +8,12 @@ import HeaderRouter from "../Main/Router";
 import "./Header.scss";
 import SideModul from "../SideModul";
 import MobileRouter from "../Main/Router/MobileRouter";
+import { SmoothScrollToTopPixels } from "../../functions";
 
 export default (props) => {
   let {isScrolled} = props;
 
   const [isOpened, setOpened] = useState(false);
-
-  console.log(isOpened);
 
   let header = document.getElementById("header"),
       headerRouter = document.getElementById("headerRouter"),
@@ -36,9 +35,16 @@ export default (props) => {
   }
 
   function routerHandler() {    
-    console.log("вызвал функцию");
-    if (header.classList.contains("header_opened")) {
-      console.log("закрыл");
+    
+    if (!isScrolled) {
+      isScrolled = true;
+      SmoothScrollToTopPixels(80);
+      setTimeout(() => {
+        routerHandler();
+      }, 100);
+    }
+
+    else if (header.classList.contains("header_opened")) {
       setOpened(false);
       headerOutfit.classList.remove("header__outfit_opened");
       headerOutfit.classList.add("header__outfit_closed");
