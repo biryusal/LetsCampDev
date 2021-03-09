@@ -125,7 +125,7 @@ export function addDays(date, days) {
   return result;
 }
 
-export default function ScrollToTop() {
+export function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -135,3 +135,9 @@ export default function ScrollToTop() {
   return null;
 }
 
+export function SmoothScrollToTopPixels(pixels) {
+  window.scrollTo({
+    top: pixels,
+    behavior: "smooth"
+  });
+}
