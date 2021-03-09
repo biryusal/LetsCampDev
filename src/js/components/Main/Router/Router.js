@@ -45,7 +45,7 @@ function Router(props) {
           <div className = "router__datePicker">
             <div className = "router__info">
               <span className = "router__header">Прибытие</span>
-              <span className = "router__text">Когда?</span>
+              <span className = "router__text">{startDate ? startDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату заезда"}</span>
             </div>
           </div>}
       locale = "ru" 
@@ -65,7 +65,7 @@ function Router(props) {
         <div className = "router__datePicker">
           <div className = "router__info">
             <span className = "router__header">Отбытие</span>
-            <span className = "router__text">Когда?</span>
+            <span className = "router__text">{endDate ? endDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату выезда"}</span>
           </div>
         </div>}
       locale = "ru" 
@@ -77,8 +77,8 @@ function Router(props) {
           <span className = "router__header">Гости</span>
           <span className = "router__text">Сколько гостей?</span>
         </div>
-        <SelectGuests desktop/>
       </div>
+      <SelectGuests desktop/>
     </div>
   )
 }
