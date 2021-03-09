@@ -14,14 +14,20 @@ export default (props) => {
   let {isScrolled} = props;
 
   const [isOpened, setOpened] = useState(false);
+  const [isSmoothScrolled, setSmoothScrolled] = useState(false);
 
   let header = document.getElementById("header"),
       headerRouter = document.getElementById("headerRouter"),
       headerOutfit = document.getElementById("headerOutfit");
 
   useEffect(() => {
-    if (!isScrolled) {
+    if (!isScrolled && !isSmoothScrolled) {
       setOpened(false);
+    }
+    else if (isSmoothScrolled) {
+      setOpened(true);
+      setSmoothScrolled(false);
+      routerHandler();
     }
   });
 
@@ -37,11 +43,8 @@ export default (props) => {
   function routerHandler() {    
     
     if (!isScrolled) {
-      isScrolled = true;
       SmoothScrollToTopPixels(80);
-      setTimeout(() => {
-        routerHandler();
-      }, 100);
+      setSmoothScrolled(true);
     }
 
     else if (header.classList.contains("header_opened")) {
