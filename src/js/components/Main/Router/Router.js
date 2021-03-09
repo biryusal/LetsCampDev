@@ -10,7 +10,7 @@ import SelectGuests from "../../SelectGuests";
 import { DateToFormated } from "../../../functions";
 
 function Router(props) {
-  const {region, routerHandler, isHeader} = props;
+  const {region, routerHandler, isHeader, selectedGuestsOutput} = props;
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState();
   registerLocale("ru", ru);
@@ -76,7 +76,7 @@ function Router(props) {
       <div className = "router__option modalWindowButton" id = "selectGuestsButton">
         <div className = "router__info">
           <span className = "router__header">Гости</span>
-          <span className = "router__text">Сколько гостей?</span>
+          <span className = "router__text">{selectedGuestsOutput ? selectedGuestsOutput : "Сколько гостей?"}</span>
         </div>
       </div>
       <SelectGuests desktop/>
@@ -88,7 +88,8 @@ const MapStateToProps = (state) => {
   return {
     region: state.userSelectedRegion,
     datepickerFrom: state.datepicker.from,
-    datepickerTo: state.datepicker.to
+    datepickerTo: state.datepicker.to,
+    selectedGuestsOutput: state.selectedGuestsOutput
   }
 }
 

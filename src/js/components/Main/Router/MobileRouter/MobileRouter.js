@@ -13,7 +13,7 @@ import SelectGuests from "../../../SelectGuests";
 import { addDays, DateToFormated } from "../../../../functions";
 
 function MobileRouter(props) {
-  let {region} = props;
+  let {region, selectedGuestsOutput} = props;
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState();
@@ -99,7 +99,7 @@ function MobileRouter(props) {
         <SelectGuests mobile/>
         <span className = "mobileRouter__inputName">Количество гостей</span>
         <div className = "mobileRouter__select modalWindowButton" id = "selectGuestsMobileButton">
-          <span className = "mobileRouter__text">Выберите количество гостей</span>
+          <span className = {selectedGuestsOutput ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{selectedGuestsOutput ? selectedGuestsOutput : "Выберите количество гостей"}</span>
           <div className = "mobileRouter__input_background">
             <GuestsIcon />
           </div>
@@ -117,7 +117,8 @@ const MapStateToProps = (state) => {
   return {
     region: state.userSelectedRegion,
     datepickerFrom: state.datepicker.from,
-    datepickerTo: state.datepicker.to
+    datepickerTo: state.datepicker.to,
+    selectedGuestsOutput: state.selectedGuestsOutput
   }
 }
 

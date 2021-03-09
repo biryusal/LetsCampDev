@@ -16,7 +16,7 @@
     }
     @media screen and (min-width: 768px) and (max-width: 1439px) {
       height: 60px;
-      width: 530px;
+      width: 650px;
       background-size: 4%;
       background-position: 98% 50%;
     }
@@ -70,9 +70,6 @@
       .router__info {
         border: 0px;
       }
-    }
-    &:last-of-type {
-      padding-right: 40px;
     }
     &:hover {
       border-radius: 50px;
