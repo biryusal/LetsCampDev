@@ -41,11 +41,18 @@
     border-radius: 10px;
     border: 1px solid rgb(221, 221, 221);
     height: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 16px;
     padding: 5px;
     padding-right: 10px;
     cursor: pointer;
+    &_active {
+      fill: #4D79BA;
+    }
+    &_opened {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 0px;
+    }
   }
 
   &__text {
@@ -53,6 +60,9 @@
     color: rgb(182, 182, 182);
     overflow: hidden;
     text-overflow: ellipsis;
+    &_active {
+      color: black;
+    }
   }
 
   &__inputName {
@@ -83,9 +93,19 @@
       border-bottom: 2px solid black;
     }
   }
+
+  &__calendar {
+    margin-top: -20px;
+  }
 }
 
 .selectCityMobileButton {
+  &_active {
+    fill: #4D79BA;
+  }
+}
+
+.selectGuestsMobileButton {
   &_active {
     fill: #4D79BA;
   }

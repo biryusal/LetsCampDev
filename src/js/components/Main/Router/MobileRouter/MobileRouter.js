@@ -32,81 +32,75 @@ function MobileRouter(props) {
     <div className = "mobileRouter__wrapper">
       <div className = "mobileRouter__option">
         <span className = "mobileRouter__inputName">Регион</span>
-        <div className = "mobileRouter__select modalWindowButton" id = "selectCityMobileButton">
-          <span className = "mobileRouter__text">{region ? region : "Выберите регион"}</span>
+        <div className = {region ? "mobileRouter__select mobileRouter__select_active modalWindowButton" : "mobileRouter__select modalWindowButton"} id = "selectCityMobileButton">
+          <span className = {region ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{region ? region : "Выберите регион"}</span>
           <div className = "mobileRouter__input_background">
             <RegionIcon />
           </div>
         </div>
         <SelectCity mobile selectedRegion = {region ? region : null}/>
       </div>
-      <DatePicker
-      minDate = {new Date()} value = {startDate} 
-      
-      id = "datapickerFromMobile"
-
-      onCalendarOpen = {() => {
-        document.getElementById("datapickerFromMobile").classList.add("mobileRouter__input_active");
-       }}
-       onCalendarClose = {() => {
-         document.getElementById("datapickerFromMobile").classList.remove("mobileRouter__input_active");
-        }}
-
-      customInput = {
-        <div className = "mobileRouter__option mobileRouter__option_datepicker">
-          <span className = "mobileRouter__inputName">Дата заезда</span>
-          <div className = "mobileRouter__select">
-            <span className = "mobileRouter__text">Выберите дату заезда</span>
-            <div className = "mobileRouter__input_background">
-              <DateIcon />
-            </div>
-          </div>
-        </div>}
-      locale = "ru" 
-      selected = {startDate} 
-      onChange = {date => handleDateChange("startDateTime", date)} />
-
-      <DatePicker
-      value = {endDate}
-      id = "datapickerToMobile"
-      onCalendarOpen = {() => {
-       document.getElementById("datapickerToMobile").classList.add("mobileRouter__input_active");
-      }}
-      onCalendarClose = {() => {
-        document.getElementById("datapickerTo").classList.remove("mobileRouter__input_active");
-       }}
-      customInput = {
-        <div className = "mobileRouter__option mobileRouter__option_datepicker">
-          <span className = "mobileRouter__inputName">Дата заезда</span>
-          <div className = "mobileRouter__select">
-            <span className = "mobileRouter__text">Выберите дату заезда</span>
-            <div className = "mobileRouter__input_background">
-              <DateIcon />
-            </div>
-          </div>
-        </div>}
-      locale = "ru" 
-      selected = {endDate}
-      minDate = {startDate}
-      onChange = {date => handleDateChange("endDateTime", date)} />
-
       <div className = "mobileRouter__option">
+        <span className = "mobileRouter__inputName">Дата заезда</span>
+        <DatePicker
+        minDate = {new Date()} value = {startDate} 
+        
+        id = "datapickerFromMobile"
+    
+        onCalendarOpen = {() => {
+          document.getElementById("datapickerFromMobile").classList.add("mobileRouter__input_active");
+         }}
+         onCalendarClose = {() => {
+           document.getElementById("datapickerFromMobile").classList.remove("mobileRouter__input_active");
+          }}
+
+        calendarClassName = "mobileRouter__calendar"
+        
+        customInput = {
+          <div className = {startDate ? "mobileRouter__select mobileRouter__select_active" : "mobileRouter__select"}>
+              <span className = {startDate ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{startDate ? startDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату выезда"}</span>
+              <div className = "mobileRouter__input_background">
+                <DateIcon />
+              </div>
+            </div>}
+        locale = "ru" 
+        selected = {startDate} 
+        onChange = {date => handleDateChange("startDateTime", date)} />
+      </div>
+      <div className = "mobileRouter__option">
+        <span className = "mobileRouter__inputName">Дата выезда</span>
+        <DatePicker
+        value = {endDate}
+        id = "datapickerToMobile"
+        onCalendarOpen = {() => {
+         document.getElementById("datapickerToMobile").classList.add("mobileRouter__input_active");
+        }}
+        onCalendarClose = {() => {
+          document.getElementById("datapickerTo").classList.remove("mobileRouter__input_active");
+         }}
+
+        calendarClassName = "mobileRouter__calendar"
+
+        customInput = {
+
+            <div className = {endDate ? "mobileRouter__select mobileRouter__select_active" : "mobileRouter__select"}>
+              <span className = {endDate ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{endDate ? endDate.toISOString().replace('-', '/').split('T')[0].replace('-', '/').split("/").reverse().join("/") : "Выберите дату выезда"}</span>
+              <div className = "mobileRouter__input_background">
+                <DateIcon />
+              </div>
+            </div>}
+        locale = "ru" 
+        selected = {endDate}
+        minDate = {startDate}
+        onChange = {date => handleDateChange("endDateTime", date)} />
+      </div>
+      <div className = "mobileRouter__option">
+        <SelectGuests mobile/>
         <span className = "mobileRouter__inputName">Количество гостей</span>
         <div className = "mobileRouter__select modalWindowButton" id = "selectGuestsMobileButton">
           <span className = "mobileRouter__text">Выберите количество гостей</span>
           <div className = "mobileRouter__input_background">
             <GuestsIcon />
-          </div>
-          <SelectGuests mobile/>
-        </div>
-      </div>
-      
-      <div className = "mobileRouter__option">
-        <span className = "mobileRouter__inputName">Количество комнат</span>
-        <div className = "mobileRouter__select">
-          <span className = "mobileRouter__text">Выберите количество комнат</span>
-          <div className = "mobileRouter__input_background">
-            <RoomsIcon />
           </div>
         </div>
       </div>
