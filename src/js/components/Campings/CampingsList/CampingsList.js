@@ -6,7 +6,7 @@ export default (props) => {
   let {campings} = props;
   return(
     campings.map((item) => {
-      return <CampingCard {...item} />
+      return <CampingCard {...item} key = {item.number + "key"} />
     })
   )
 }
