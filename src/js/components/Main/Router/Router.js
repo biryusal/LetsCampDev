@@ -79,7 +79,8 @@ function Router(props) {
           <span className = "router__text">{selectedGuestsOutput ? selectedGuestsOutput : "Сколько гостей?"}</span>
         </div>
       </div>
-      <SelectGuests desktop/>
+      <SelectGuests endDate = {endDate} startDate = {startDate} region = {region} desktop/>
+      <span className = "router__error" id = "routerError"></span>
     </div>
   )
 }
