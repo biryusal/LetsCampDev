@@ -35,7 +35,7 @@ export default function MobileDownbar(props) {
           <span className = "mobileDownbar__description">Отзывы</span>
         </div>
       </NavLink>
-      <NavLink exact to = "/signin" activeClassName = "mobileDownbar__link_active" className = "mobileDownbar__link">
+      <NavLink exact to = "/auth/signin" activeClassName = "mobileDownbar__link_active" className = "mobileDownbar__link">
         <div className = "mobileDownbar__option">
           <AuthIcon />
           <span className = "mobileDownbar__description">{isUserLoggedIn ? "Личный кабинет" : "Вход"}</span>
