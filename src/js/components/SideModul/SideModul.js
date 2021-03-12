@@ -16,8 +16,8 @@ export default () => {
       </div>
       <div className = "sideModul__auth">
         <div className = "sideModul__composer">
-          <NavLink to = "/signin" className = "sideModul__link">Войти</NavLink>
-          <NavLink to = "/signup" className = "sideModul__link">Зарегистрироваться</NavLink>
+          <NavLink to = "/auth/signin" className = "sideModul__link">Войти</NavLink>
+          <NavLink to = "/auth/signup" className = "sideModul__link">Зарегистрироваться</NavLink>
         </div>
       </div>
       <div className = "sideModul__help">
