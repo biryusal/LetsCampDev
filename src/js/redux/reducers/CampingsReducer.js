@@ -67,21 +67,23 @@ export default function CampingsReducer(state = initialState, action) {
     case CHANGE_FILTERS:
       return {...state, campingFilters: Object.assign({}, state.campingFilters, action.payload) }
     case REVOKE_SPECIAL_FILTERS:
-      return {...state, campingFilters: {
-        animals: false,
-        electricity: false,
-        food: false,
-        isWater: false,
-        kids: false,
-        parkSpace: false,
-      }, filterApplied: false}
+      return {...state, campingFilters: Object.assign({}, state.campingFilters, 
+        {
+          animals: false,
+          electricity: false,
+          food: false,
+          isWater: false,
+          kids: false,
+          parkSpace: false,
+        }), filterApplied: false}
     case REVOKE_ADDITIONAL_FILTERS:
-      return {...state, campingFilters: {
+      return {...state, campingFilters: Object.assign({}, state.campingFilters, 
+      {
         WiFi: false,
         nonsmokeZone: false,
         peopleDisabilities: false,
         sleepSpace: false
-      }, filterApplied: false}
+      }), filterApplied: false}
     case APPLY_FILTERS_REDIRECT:
       return {...state, filterRedirect: true}
     case APPLY_FILTERS_REQUEST:
