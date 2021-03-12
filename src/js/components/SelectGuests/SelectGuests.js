@@ -4,22 +4,53 @@ import MinusIcon from "../../../img/minus.svg";
 import { connect } from "react-redux";
 import {setGuestsOutput} from "../../redux/actions/CampingsActions";
 import "./SelectGuests.scss";
+import { Redirect } from "react-router";
 
 function SelectGuests(props) {
-  let {desktop, mobile, setGuestsOutput} = props;
+  let {desktop, mobile, setGuestsOutput, startDate, endDate, region} = props;
   const [adults, setAdults] = useState(1),
         [kids, setKids] = useState(1),
         [rooms, setRooms] = useState(1),
         [error, setError] = useState(null);
 
+  let [isRedirectToCampings, setRedirectToCampings] = useState(null);
+
   function saveGuests() {
     let selectGuestsWindow = desktop ? document.getElementById("selectGuests") : document.getElementById("selectGuestsMobile");
+
     if ((adults != 0 && (adults != 0 || kids != 0) && rooms >= 1)) {
       setError(null);
-      setGuestsOutput("Взрослых: " + adults + "; " + (kids ? ("Детей: " + kids + "; ") : "") + "Комнат: " + rooms);
+      let guestsOutput = "Взрослых: " + adults + "; " + (kids ? ("Детей: " + kids + "; ") : "") + "Комнат: " + rooms;
+      setGuestsOutput(guestsOutput);
       selectGuestsWindow.style.display = "none";
+      if (desktop) {
+        let error = document.getElementById("selectGuestsError");
+
+        if (startDate && endDate && region) {
+          error.classList.remove("selectGuests__error_active");
+          error.innerHTML = null;
+          setRedirectToCampings(true)
+        }
+    
+        else {
+          error.classList.add("selectGuests__error_active");
+
+          if (!(startDate && endDate)) {
+            error.innerText = "Введите дату.";
+          }
+          else if (!region) {
+            error.innerText = "Выберите регион для поездки.";
+          }
+          else {
+            error.innerText = "Проверьте правильность заполнения формы.";
+          }
+        }
+      }
     }
+
     else {
+      error.classList.add("selectGuests__error_active");
+
       if (adults == 0 && kids != 0) {
         setError("Детям нельзя без сопровождения взрослых!"); 
       }
@@ -36,7 +67,9 @@ function SelectGuests(props) {
   }
 
   return (
-    <div className = "modalWindow selectGuests__wrapper" id = {desktop ? "selectGuests" : (mobile ? "selectGuestsMobile" : null)}>
+    <>
+      {isRedirectToCampings ? <Redirect to = "/campings/page/1" /> : 
+      <div className = "modalWindow selectGuests__wrapper" id = {desktop ? "selectGuests" : (mobile ? "selectGuestsMobile" : null)}>
       <div className = "selectGuests__option">
         <span className = "selectGuests__name">Взрослых</span>
         <div className = "selectGuests__value">
@@ -44,21 +77,18 @@ function SelectGuests(props) {
             <button id = {desktop ? "adultsButtonDesktop" : "adultsButtonMobile"} onClick = {() => {
               if (adults >= 1) {
                 if (adults == 1) {
-                  document.getElementById("adultsButtonDesktop").classList.add("selectGuests__numberButton_disabled");
-                  document.getElementById("adultsButtonMobile").classList.add("selectGuests__numberButton_disabled");
-                  document.querySelector("#adultsButtonDesktop").disabled = true;
-                  document.querySelector("#adultsButtonMobile").disabled = true;
+                  desktop ? document.getElementById("adultsButtonDesktop").classList.add("selectGuests__numberButton_disabled")
+                  : document.getElementById("adultsButtonMobile").classList.add("selectGuests__numberButton_disabled");
+                  desktop ? document.querySelector("#adultsButtonDesktop").disabled = true
+                  : document.querySelector("#adultsButtonMobile").disabled = true;
                 }
                 else {
-                  document.getElementById("adultsButtonDesktop").classList.remove("selectGuests__numberButton_disabled");
-                  document.getElementById("adultsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
-                  document.querySelector("#adultsButtonDesktop").disabled = false;
-                  document.querySelector("#adultsButtonMobile").disabled = false;
+                  desktop ? document.getElementById("adultsButtonDesktop").classList.remove("selectGuests__numberButton_disabled")
+                  : document.getElementById("adultsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
+                  desktop ? document.querySelector("#adultsButtonDesktop").disabled = false
+                  : document.querySelector("#adultsButtonMobile").disabled = false;
                 }
                 setAdults(adults - 1);
-              }
-              else {
-                
               }
             }} className = "selectGuests__numberButton">
               <MinusIcon />
@@ -68,10 +98,10 @@ function SelectGuests(props) {
           <div className = "selectGuests__plus selectGuests__manageNumber">
             <button onClick = {() => {
               if (adults == 0) {
-                document.getElementById("adultsButtonDesktop").classList.remove("selectGuests__numberButton_disabled");
-                document.getElementById("adultsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
-                document.querySelector("#adultsButtonDesktop").disabled = false;
-                document.querySelector("#adultsButtonMobile").disabled = false;
+                desktop ? document.getElementById("adultsButtonDesktop").classList.remove("selectGuests__numberButton_disabled")
+                : document.getElementById("adultsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
+                desktop ? document.querySelector("#adultsButtonDesktop").disabled = false
+                : document.querySelector("#adultsButtonMobile").disabled = false;
               }
               setAdults(adults + 1);
             }} className = "selectGuests__numberButton">
@@ -87,16 +117,16 @@ function SelectGuests(props) {
             <button id = {desktop ? "kidsButtonDesktop" : "kidsButtonMobile"} onClick = {() => {
               if (kids >= 1) {
                 if (kids == 1) {
-                  document.getElementById("kidsButtonDesktop").classList.add("selectGuests__numberButton_disabled");
-                  document.getElementById("kidsButtonMobile").classList.add("selectGuests__numberButton_disabled");
-                  document.querySelector("#kidsButtonDesktop").disabled = true;
-                  document.querySelector("#kidsButtonMobile").disabled = true;
+                  desktop ? document.getElementById("kidsButtonDesktop").classList.add("selectGuests__numberButton_disabled")
+                  : document.getElementById("kidsButtonMobile").classList.add("selectGuests__numberButton_disabled");
+                  desktop ? document.querySelector("#kidsButtonDesktop").disabled = true
+                  : document.querySelector("#kidsButtonMobile").disabled = true;
                 }
                 else {
-                  document.getElementById("kidsButtonDesktop").classList.remove("selectGuests__numberButton_disabled");
-                  document.getElementById("kidsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
-                  document.querySelector("#kidsButtonDesktop").disabled = false;
-                  document.querySelector("#kidsButtonMobile").disabled = false;
+                  desktop ? document.getElementById("kidsButtonDesktop").classList.remove("selectGuests__numberButton_disabled")
+                  : document.getElementById("kidsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
+                  desktop ? document.querySelector("#kidsButtonDesktop").disabled = false
+                  : document.querySelector("#kidsButtonMobile").disabled = false;
                 }
                 setKids(kids - 1);
               }
@@ -108,10 +138,10 @@ function SelectGuests(props) {
           <div className = "selectGuests__plus selectGuests__manageNumber">
             <button onClick = {() => {
               if (kids == 0) {
-                document.getElementById("kidsButtonDesktop").classList.remove("selectGuests__numberButton_disabled");
-                document.getElementById("kidsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
-                document.querySelector("#kidsButtonDesktop").disabled = false;
-                document.querySelector("#kidsButtonMobile").disabled = false;
+                desktop ? document.getElementById("kidsButtonDesktop").classList.remove("selectGuests__numberButton_disabled")
+                : document.getElementById("kidsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
+                desktop ? document.querySelector("#kidsButtonDesktop").disabled = false
+                : document.querySelector("#kidsButtonMobile").disabled = false;
               }
               setKids(kids + 1);
             }} className = "selectGuests__numberButton">
@@ -126,16 +156,16 @@ function SelectGuests(props) {
           <div id = {desktop ? "roomsButtonDesktop" : "roomsButtonMobile"} onClick = {() => {
               if (rooms >= 1) {
                 if (rooms == 1) {
-                  document.getElementById("roomsButtonDesktop").classList.add("selectGuests__numberButton_disabled");
-                  document.getElementById("roomsButtonMobile").classList.add("selectGuests__numberButton_disabled");
-                  document.querySelector("#roomsButtonDesktop").disabled = true;
-                  document.querySelector("#roomsButtonMobile").disabled = true;
+                  desktop ? document.getElementById("roomsButtonDesktop").classList.add("selectGuests__numberButton_disabled")
+                  : document.getElementById("roomsButtonMobile").classList.add("selectGuests__numberButton_disabled");
+                  desktop ? document.querySelector("#roomsButtonDesktop").disabled = true
+                  : document.querySelector("#roomsButtonMobile").disabled = true;
                 }
                 else {
-                  document.getElementById("roomsButtonDesktop").classList.remove("selectGuests__numberButton_disabled");
-                  document.getElementById("roomsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
-                  document.querySelector("#roomsButtonDesktop").disabled = false;
-                  document.querySelector("#roomsButtonMobile").disabled = false;
+                  desktop ? document.getElementById("roomsButtonDesktop").classList.remove("selectGuests__numberButton_disabled")
+                  : document.getElementById("roomsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
+                  desktop ? document.querySelector("#roomsButtonDesktop").disabled = false
+                  : document.querySelector("#roomsButtonMobile").disabled = false;
                 }
                 setRooms(rooms - 1);
               }
@@ -148,10 +178,10 @@ function SelectGuests(props) {
           <div className = "selectGuests__plus selectGuests__manageNumber">
             <button onClick = {() => {
               if (rooms == 0) {
-                document.getElementById("roomsButtonDesktop").classList.remove("selectGuests__numberButton_disabled");
-                document.getElementById("roomsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
-                document.querySelector("#roomsButtonDesktop").disabled = false;
-                document.querySelector("#roomsButtonMobile").disabled = false;
+                desktop ? document.getElementById("roomsButtonDesktop").classList.remove("selectGuests__numberButton_disabled")
+                : document.getElementById("roomsButtonMobile").classList.remove("selectGuests__numberButton_disabled");
+                desktop ? document.querySelector("#roomsButtonDesktop").disabled = false
+                : document.querySelector("#roomsButtonMobile").disabled = false;
               }
               setRooms(rooms + 1);
             }} className = "selectGuests__numberButton">
@@ -173,8 +203,9 @@ function SelectGuests(props) {
             <button className = "selectGuests__saveButton" onClick = {saveGuests}>Сохранить</button>
           </> : null}
       </div>
-      {error ? <span id = "selectGuestsError" className = "selectGuests__errorMessage">{error}</span> : null}
-    </div>
+      <span id = "selectGuestsError" className = "selectGuests__errorMessage">{error}</span>
+    </div>}
+    </>
   )
 }
 
