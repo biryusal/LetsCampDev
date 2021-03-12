@@ -8,6 +8,8 @@ import { connect } from "react-redux";
 import Campings from "./js/components/Campings/Campings";
 import CampingPage from "./js/components/Campings/CampingPage/CampingPage";
 import {ScrollToTop} from "./js/functions";
+import SignIn from "./js/components/Auth/SignIn";
+import SignUp from "./js/components/Auth/SignUp";
 
 function App() {
 
@@ -65,6 +67,8 @@ function App() {
         <Route exact path = "/" render = {() => <Main />}></Route>
         <Route exact path = "/campings/page/:page" render = {() => <Campings />}></Route>
         <Route exact path = "/campings/id/:id" render = {() => <CampingPage />}></Route>
+        <Route exact path = "/auth/signin" render = {() => <SignIn />}></Route>
+        <Route exact path = "/auth/signup" render = {() => <SignUp />}></Route>
       </Switch>
     </BrowserRouter>
   )
