@@ -5,6 +5,15 @@ import "./AdditionalFilter.scss";
 
 function AdditionalFilter(props) {
   const {changeFilters, applyFilters, campingFilters, revokeAdditionalFilters} = props;
+
+  function saveFilters(filterID, campingsFilters) {
+    let filter = document.getElementById(filterID);
+    let filterButton = document.getElementById(filterID + "Button");
+    filter.style.display = "none";
+    filterButton.classList.remove(filterID + "Button_active");
+    applyFilters(campingsFilters);
+  }
+
   return(
     <div id = "additionalFilter" className = "campingFilter__wrapper specialFilter__wrapper modalWindow">
       <div className = "specialFilter__filter">
@@ -25,7 +34,7 @@ function AdditionalFilter(props) {
       </div>
       <div className = "specialFilter__buttons">
         <button className = "specialFilter__button specialFilter__clearButton" onClick = {() => revokeAdditionalFilters()}>Очистить</button>
-        <button className = "specialFilter__button specialFilter__submitButton" onClick = {() => applyFilters(campingFilters)}>Сохранить</button>
+        <button className = "specialFilter__button specialFilter__submitButton" onClick = {() => saveFilters("additionalFilter", campingFilters)}>Сохранить</button>
       </div>
     </div>
   )

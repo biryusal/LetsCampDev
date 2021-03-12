@@ -4,7 +4,16 @@ import { applyFilters, changeFilters, revokeSpecialFilters } from "../../../../r
 import "./SpecialFilter.scss";
 
 function SpecialFilter(props) {
-  const {changeFilters, applyFilters, campingFilters, revokeSpecialFilters} = props;
+  const {changeFilters, campingFilters, applyFilters, revokeSpecialFilters} = props;
+
+  function saveFilters(filterID, campingsFilters) {
+    let filter = document.getElementById(filterID);
+    let filterButton = document.getElementById(filterID + "Button");
+    filter.style.display = "none";
+    filterButton.classList.remove(filterID + "Button_active");
+    applyFilters(campingsFilters);
+  }
+
   return(
     <div id = "specialFilter" className = "campingFilter__wrapper specialFilter__wrapper modalWindow">
       <div className = "specialFilter__filter">
@@ -33,7 +42,7 @@ function SpecialFilter(props) {
       </div>
       <div className = "specialFilter__buttons">
         <button className = "specialFilter__button specialFilter__clearButton" onClick = {() => revokeSpecialFilters()}>Очистить</button>
-        <button className = "specialFilter__button specialFilter__submitButton" onClick = {() => applyFilters(campingFilters)}>Сохранить</button>
+        <button className = "specialFilter__button specialFilter__submitButton" onClick = {() => saveFilters("specialFilter", campingFilters)}>Сохранить</button>
       </div>
     </div>
   )
