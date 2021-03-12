@@ -58,6 +58,7 @@
   &__text {
     pointer-events: none;
     color: rgb(182, 182, 182);
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     &_active {

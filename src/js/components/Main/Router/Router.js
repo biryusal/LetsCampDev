@@ -11,7 +11,7 @@ import { DateToFormated } from "../../../functions";
 
 function Router(props) {
   const {region, routerHandler, isHeader, selectedGuestsOutput} = props;
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   registerLocale("ru", ru);
   function handleDateChange(dateName, dateValue) {

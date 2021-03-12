@@ -47,6 +47,7 @@
     }
   }
   &__reviews {
+    white-space: nowrap;
     border-bottom: 1px dashed #537db36e;
     color: #4278BE;
   }
@@ -106,7 +107,7 @@
     background-color:#4278BE;
     color: white;
     border-radius: 5px;
-    
+    font-size: 14px;
   }
   
   &__description {

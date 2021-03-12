@@ -4,7 +4,7 @@ import HomeIcon from "../../../img/HomeIcon.svg";
 import CampingIcon from "../../../img/CampingsIcon.svg";
 import ReviewsIcon from "../../../img/star.svg";
 import AuthIcon from "../../../img/user.svg";
-import "./MobileDownbar.less";
+import "./MobileDownbar.scss";
 
 export default function MobileDownbar(props) {
   let {isUserLoggedIn} = props;

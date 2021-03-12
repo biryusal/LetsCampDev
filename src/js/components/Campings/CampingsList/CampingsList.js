@@ -1,6 +1,6 @@
 import React from "react";
 import CampingCard from "../CampingCard";
-import "./CampingsList.less";
+import "./CampingsList.scss";
 
 export default (props) => {
   let {campings} = props;

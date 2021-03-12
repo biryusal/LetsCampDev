@@ -1,6 +1,6 @@
 import React from "react";
 import PopularCampings from "../../../../img/popularCamping.jpg";
-import "./PopularCampings.less";
+import "./PopularCampings.scss";
 
 export default () => {
   return (

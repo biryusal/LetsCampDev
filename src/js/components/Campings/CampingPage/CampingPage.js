@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import {connect} from "react-redux";
-import "./CampingPage.less";
+import "./CampingPage.scss";
 import CampingFull from "../CampingFull";
 import { getCampingById } from "../../../redux/actions/CampingsActions";
 

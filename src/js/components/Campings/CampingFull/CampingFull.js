@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../Header";
 import CampingPlugImage from "../../../../img/bigAdvantage.png";
 import Star from "../../../../img/star.svg";
-import "./CampingFull.less";
+import "./CampingFull.scss";
 import Footer from "../../Footer";
 import MobileDownbar from "../../MobileDownbar/MobileDownBar";
 import WiFiIcon from "../../../../img/wi-fi.svg";

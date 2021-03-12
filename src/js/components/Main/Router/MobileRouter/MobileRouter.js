@@ -15,7 +15,7 @@ import { addDays, DateToFormated } from "../../../../functions";
 function MobileRouter(props) {
   let {region, selectedGuestsOutput} = props;
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
 
   registerLocale("ru", ru);
@@ -71,6 +71,7 @@ function MobileRouter(props) {
       <div className = "mobileRouter__option">
         <span className = "mobileRouter__inputName">Дата выезда</span>
         <DatePicker
+        minDate = {startDate ? startDate : new Date()}
         value = {endDate}
         id = "datapickerToMobile"
         onCalendarOpen = {() => {
@@ -92,13 +93,12 @@ function MobileRouter(props) {
             </div>}
         locale = "ru" 
         selected = {endDate}
-        minDate = {startDate}
         onChange = {date => handleDateChange("endDateTime", date)} />
       </div>
       <div className = "mobileRouter__option">
         <SelectGuests mobile/>
         <span className = "mobileRouter__inputName">Количество гостей</span>
-        <div className = "mobileRouter__select modalWindowButton" id = "selectGuestsMobileButton">
+        <div className = {selectedGuestsOutput ? "mobileRouter__select mobileRouter__select_active modalWindowButton" : "mobileRouter__select modalWindowButton"} id = "selectGuestsMobileButton">
           <span className = {selectedGuestsOutput ? "mobileRouter__text mobileRouter__text_active" : "mobileRouter__text"}>{selectedGuestsOutput ? selectedGuestsOutput : "Выберите количество гостей"}</span>
           <div className = "mobileRouter__input_background">
             <GuestsIcon />
