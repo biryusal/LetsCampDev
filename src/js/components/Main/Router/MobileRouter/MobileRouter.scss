@@ -11,6 +11,17 @@
     }
   }
 
+  &__error {
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+    &_active {
+      padding: 5px 0px;
+      padding-left: 15px;
+      border-left: 3px solid rgb(151, 21, 21);
+    }
+  }
+
   &__option {
     display: flex;
     flex-direction: column;
