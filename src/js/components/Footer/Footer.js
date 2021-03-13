@@ -1,47 +1,48 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import "./Footer.scss";
+import FooterColumn from "./FooterColumn/";
 
 export default () => {
   return(
     <footer className = "footer">
       <div className = "footer__wrapper container">
-        <div className = "footer__column">
-          <h2 className = "footer__links">О нас</h2>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-        </div>
-        <div className = "footer__column">
-          <h2 className = "footer__links">О нас</h2>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-        </div>
-        <div className = "footer__column">
-          <h2 className = "footer__links">О нас</h2>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-        </div>
-        <div className = "footer__column">
-          <h2 className = "footer__links">О нас</h2>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-          <NavLink to = "/" className = "footer__link" activeClassName = "footer__link_active">О чем платформа</NavLink>
-        </div>
+        <FooterColumn header = "О нас" links = {            // В links передайте нужные ссылки в формате "Имя ссылки": "Адрес ссылки"
+          {"О чем платформа0": "/",                         // В Header передайте заголовок для секции перечисленных ссылок
+          "О чем платформа1": "/",
+          "О чем платформа2": "/",
+          "О чем платформа3": "/",
+          "О чем платформа4": "/",
+          "О чем платформа5": "/",
+          "О чем платформа6": "/",
+          "О чем платформа7": "/"}}/>
+          <FooterColumn header = "О нас" links = {
+          {"О чем платформа0": "/", 
+          "О чем платформа1": "/",
+          "О чем платформа2": "/",
+          "О чем платформа3": "/",
+          "О чем платформа4": "/",
+          "О чем платформа5": "/",
+          "О чем платформа6": "/",
+          "О чем платформа7": "/"}}/>
+          <FooterColumn header = "О нас" links = {
+          {"О чем платформа0": "/", 
+          "О чем платформа1": "/",
+          "О чем платформа2": "/",
+          "О чем платформа3": "/",
+          "О чем платформа4": "/",
+          "О чем платформа5": "/",
+          "О чем платформа6": "/",
+          "О чем платформа7": "/"}}/>
+          <FooterColumn header = "О нас" links = {
+          {"О чем платформа0": "/", 
+          "О чем платформа1": "/",
+          "О чем платформа2": "/",
+          "О чем платформа3": "/",
+          "О чем платформа4": "/",
+          "О чем платформа5": "/",
+          "О чем платформа6": "/",
+          "О чем платформа7": "/"}}/>
       </div>
     </footer>
   )
