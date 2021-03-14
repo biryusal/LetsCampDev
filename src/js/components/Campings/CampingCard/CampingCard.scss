@@ -36,7 +36,6 @@
   &__info {
     display: flex;
     flex-direction: column;
-    
   }
   &__rating {
     margin-bottom: 10px;
@@ -87,6 +86,9 @@
     color: black;
     margin: 0px;
     margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media screen and (min-width: 1440px) {
       font-size: 20px;
     }
@@ -112,6 +114,10 @@
   
   &__description {
     color: #A9A9A9;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient: vertical;
     @media screen and (min-width: 1440px) {
       font-size: 16px;
     }
