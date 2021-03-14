@@ -41,7 +41,7 @@ function Router(props) {
       onCalendarClose = {() => {
         document.getElementById("datapickerFrom").classList.remove("router__option_active");
       }}
-      wrapperClassName = "datepicker__wrapper"
+      wrapperClassName = "router__option"
       customInput = {
           <div className = "router__datePicker">
             <div className = "router__info">
@@ -61,7 +61,7 @@ function Router(props) {
       onCalendarClose = {() => {
         document.getElementById("datapickerTo").classList.remove("router__option_active");
        }}
-      wrapperClassName = "datepicker__wrapper"
+      wrapperClassName = "router__option"
       customInput = {
         <div className = "router__datePicker">
           <div className = "router__info">
