@@ -5,8 +5,6 @@ import "./FooterLinks.scss";
 export default (props) => {
   let {links} = props,
       navlinks = [];
-
-  console.log(links);
   
   for (let name in links) {
     navlinks.push(
