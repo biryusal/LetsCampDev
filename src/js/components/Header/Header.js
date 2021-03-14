@@ -98,12 +98,7 @@ export default (props) => {
         <div className = {isScrolled ? "header__links header__links_scrolled" : "header__links"}>
         <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/">Главная</NavLink>
         <NavLink isActive = {(match, location) => {
-        if (location.pathname.includes("/campings/page/") || location.pathname.includes("/campings/id/")) {
-          return true;
-        }
-        else {
-          return false;
-        }
+        return (location.pathname.includes("/campings/page/") || location.pathname.includes("/campings/id/")) ? true : false;
        }} className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
         <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/reviews">Отзывы</NavLink>
       </div>}
@@ -121,7 +116,7 @@ export default (props) => {
         }
         else {
           return false;
-        }
+        }     
       }} className = "header__link_scrolled" activeClassName = "header__link_scrolled_active" exact to = "/campings/page/1">Кемпинги</NavLink>
         <NavLink className = "header__link_scrolled" activeClassName = "header__link_scrolled_active" exact to = "/reviews">Отзывы</NavLink>
       </div>
