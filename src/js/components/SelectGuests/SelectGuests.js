@@ -17,18 +17,18 @@ function SelectGuests(props) {
 
   function saveGuests() {
     let selectGuestsWindow = desktop ? document.getElementById("selectGuests") : document.getElementById("selectGuestsMobile");
+    let error = document.getElementById("selectGuestsError");
 
     if ((adults != 0 && (adults != 0 || kids != 0) && rooms >= 1)) {
       setError(null);
       let guestsOutput = "Взрослых: " + adults + "; " + (kids ? ("Детей: " + kids + "; ") : "") + "Комнат: " + rooms;
-      setGuestsOutput(guestsOutput);
-      selectGuestsWindow.style.display = "none";
-      if (desktop) {
-        let error = document.getElementById("selectGuestsError");
 
+      if (desktop) {
         if (startDate && endDate && region) {
           error.classList.remove("selectGuests__error_active");
           error.innerHTML = null;
+          setGuestsOutput(guestsOutput);
+          selectGuestsWindow.style.display = "none";
           setRedirectToCampings(true)
         }
     
@@ -45,6 +45,11 @@ function SelectGuests(props) {
             error.innerText = "Проверьте правильность заполнения формы.";
           }
         }
+      }
+
+      else {
+        setGuestsOutput(guestsOutput);
+        selectGuestsWindow.style.display = "none";
       }
     }
 
