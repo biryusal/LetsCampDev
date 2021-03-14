@@ -26,14 +26,16 @@ function Campings(props) {
   }, []);
 
   function changePageHandler(page) {
-    setPageNumber(page.selected+1);
+    let selectedPage = page.selected + 1;
+
+    setPageNumber(selectedPage);
+
     if (filterApplied) {
-      console.log(filterApplied);
-      console.log(page.selected+1);
-      getFilteredCampingsByPageId(page.selected+1, campings);
+      getFilteredCampingsByPageId(selectedPage, campings);
     }
+    
     else {
-      getCampingsByPageId(page.selected+1);
+      getCampingsByPageId(selectedPage);
     } 
   }
     
