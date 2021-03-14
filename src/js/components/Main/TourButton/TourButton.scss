@@ -1,12 +1,14 @@
 .tourButton {
   &__wrapper {
-    position: absolute;
-    top: 40%;
-    @media screen and (min-width: 768px) and (max-width: 1439px) {
-      top: 30%;
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      align-self: flex-start;
+      margin-bottom: 30px;
     }
+    
     @media screen and (max-width: 767px) {
-      top: 20%;
+      align-self: center;
+      margin-bottom: 20px;
     }
   }
   &__link {

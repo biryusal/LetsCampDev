@@ -26,7 +26,7 @@ export default () => {
       <Header isScrolled = {isHeaderScrolled}/>
       <main className = "main">
         <section className = {isHeaderScrolled ? "main__imgBackground main__imgBackground_scrolled" : "main__imgBackground"}>
-          <div className = "container">
+          <div className = "container main__lending">
             <Router />
             <TourButton />
           </div>
