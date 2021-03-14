@@ -97,9 +97,7 @@ export default (props) => {
         {isScrolled ? (isOpened ? <HeaderRouter isHeader/> : <input type = "text" onClick = {routerHandler} className = "header__input header__input_main" placeholder = "Куда едем?"></input>) :
         <div className = {isScrolled ? "header__links header__links_scrolled" : "header__links"}>
         <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/">Главная</NavLink>
-        <NavLink isActive = {(match, location) => {
-        return (location.pathname.includes("/campings/page/") || location.pathname.includes("/campings/id/")) ? true : false;
-       }} className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
+        <NavLink isActive = {(match, location) => (location.pathname.includes("/campings/page/") || location.pathname.includes("/campings/id/")) ? true : false} className = "header__link" activeClassName = "header__link_active" exact to = "/campings/page/1">Кемпинги</NavLink>
         <NavLink className = "header__link" activeClassName = "header__link_active" exact to = "/reviews">Отзывы</NavLink>
       </div>}
         <button id = "sideModulButton" className = {isScrolled ? "header__auth header__auth_gray modalWindowButton" : "header__auth modalWindowButton"}>
