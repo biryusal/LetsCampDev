@@ -10,6 +10,7 @@ import CampingPage from "./js/components/Campings/CampingPage/CampingPage";
 import {ScrollToTop} from "./js/functions";
 import SignIn from "./js/components/Auth/SignIn";
 import SignUp from "./js/components/Auth/SignUp";
+import Help from "./js/components/Help";
 
 function App() {
 
@@ -69,6 +70,7 @@ function App() {
         <Route exact path = "/campings/id/:id" render = {() => <CampingPage />}></Route>
         <Route exact path = "/auth/signin" render = {() => <SignIn />}></Route>
         <Route exact path = "/auth/signup" render = {() => <SignUp />}></Route>
+        <Route exact path = "/help" render = {() => <Help />}></Route>
       </Switch>
     </BrowserRouter>
   )
