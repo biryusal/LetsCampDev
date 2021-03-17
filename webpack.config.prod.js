@@ -6,7 +6,7 @@ const path = require('path');
 const webpack = require("webpack");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: [
     './src/index.js'
   ],
@@ -115,15 +115,6 @@ module.exports = {
       })
     ]
   },
-  devServer: {
-    port: 80,
-    contentBase: './dist',
-    hot: true,
-    open: true,
-    openPage: '',
-    watchContentBase: true,
-    historyApiFallback: true
-  },
   plugins: [
     new ImageMinimizerPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
@@ -142,7 +133,6 @@ module.exports = {
           }],
         ]
       }
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 };
