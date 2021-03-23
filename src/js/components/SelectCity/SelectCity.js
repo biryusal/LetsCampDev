@@ -24,8 +24,8 @@ function SelectCity(props) {
   return (
     <div onClick = {(e) => setNameOfClickedRegion(e)} name="region" className = "region modalWindow" id={desktop ? "selectCity" : (mobile ? "selectCityMobile" : null)}>
 			<span className = "region__header">{selectedRegion ? selectedRegion : "Выберите регион"}</span>
-			{regions.map((curr) => {
-				return <City nameOfRegion = {curr} />
+			{regions.map((curr, index) => {
+				return <City key = {index} nameOfRegion = {curr} />
 			})}
     </div>
   )
