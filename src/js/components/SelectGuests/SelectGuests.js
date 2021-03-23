@@ -4,11 +4,12 @@ import MinusIcon from "../../../img/minus.svg";
 import { connect } from "react-redux";
 import {setGuestsOutput} from "../../redux/actions/CampingsActions";
 import "./SelectGuests.scss";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router";
+import { SmoothScrollToTopPixels } from "../../functions";
 
 function SelectGuests(props) {
-  let {desktop, mobile, setGuestsOutput, startDate, endDate, region} = props;
   let history = useHistory();
+  let {desktop, mobile, setGuestsOutput, startDate, endDate, region} = props;
   const [adults, setAdults] = useState(1),
         [kids, setKids] = useState(1),
         [rooms, setRooms] = useState(1),
@@ -30,8 +31,9 @@ function SelectGuests(props) {
           error.innerHTML = null;
           setGuestsOutput(guestsOutput);
           selectGuestsWindow.style.display = "none";
-          if (!history.location.pathname == "/campings/page/1") {
-            setRedirectToCampings(true);
+          setRedirectToCampings(true);
+          if (history.location.pathname.includes("/campings/page/")) {
+            window.location.reload();
           }
         }
     
