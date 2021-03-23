@@ -4,11 +4,13 @@ import "./FooterLinks.scss";
 
 export default (props) => {
   let {links} = props,
+      keyCounter = 0,
       navlinks = [];
   
   for (let name in links) {
+    keyCounter++;
     navlinks.push(
-      <NavLink to = {links[name] ? links[name] : "/error"} className = "footerColumn__link"
+      <NavLink key = {keyCounter} to = {links[name] ? links[name] : "/error"} className = "footerColumn__link"
       activeClassName = "footerColumn__link_active">{name ? name : "Введите название ссылки"}</NavLink>
     )
   }
